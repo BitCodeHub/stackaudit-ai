@@ -1,4 +1,8 @@
-const API_BASE = '/api'
+const API_BASE = import.meta.env.VITE_API_URL || (
+  window.location.hostname === 'localhost' 
+    ? 'http://localhost:3002' 
+    : 'https://stackaudit-api.onrender.com'
+)
 
 function getAuthHeaders() {
   const token = localStorage.getItem('stackaudit_token')
