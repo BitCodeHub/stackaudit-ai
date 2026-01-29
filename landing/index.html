@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StackAudit.ai - Stop Wasting Money on AI Tools</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#8b5cf6',
+                        accent: '#06b6d4',
+                        dark: '#0f172a',
+                        darker: '#020617'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .gradient-border {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6, #06b6d4);
+            padding: 2px;
+            border-radius: 1rem;
+        }
+        .gradient-border-inner {
+            background: #0f172a;
+            border-radius: calc(1rem - 2px);
+        }
+        .glow {
+            box-shadow: 0 0 60px rgba(99, 102, 241, 0.3);
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-darker text-white antialiased">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-darker/80 backdrop-blur-lg border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                    </svg>
+                </div>
+                <span class="text-xl font-bold">StackAudit<span class="text-primary">.ai</span></span>
+            </div>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#how-it-works" class="text-gray-400 hover:text-white transition">How It Works</a>
+                <a href="#pricing" class="text-gray-400 hover:text-white transition">Pricing</a>
+                <a href="#faq" class="text-gray-400 hover:text-white transition">FAQ</a>
+            </div>
+            <a href="#pricing" class="bg-primary hover:bg-primary/90 px-5 py-2 rounded-lg font-medium transition">
+                Start Free Audit
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center pt-20 relative overflow-hidden">
+        <!-- Background Effects -->
+        <div class="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent"></div>
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 py-20 relative z-10">
+            <div class="text-center max-w-4xl mx-auto">
+                <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 mb-8">
+                    <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                    <span class="text-sm text-gray-300">Trusted by 500+ companies</span>
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                    <span class="gradient-text">95% of companies</span><br>
+                    waste money on AI tools
+                </h1>
+                
+                <p class="text-xl md:text-2xl text-gray-400 mb-10 max-w-2xl mx-auto">
+                    StackAudit analyzes your AI stack and shows you exactly where you're overspending, 
+                    what's redundant, and how to cut costs by <span class="text-white font-semibold">40% or more</span>.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#pricing" class="bg-primary hover:bg-primary/90 px-8 py-4 rounded-xl font-semibold text-lg transition glow">
+                        Get Your Free Audit →
+                    </a>
+                    <a href="#how-it-works" class="border border-white/20 hover:border-white/40 px-8 py-4 rounded-xl font-semibold text-lg transition">
+                        See How It Works
+                    </a>
+                </div>
+                
+                <p class="text-gray-500 text-sm mt-6">No credit card required • Results in 2 minutes</p>
+            </div>
+            
+            <!-- Stats Bar -->
+            <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-white">$2.4M+</div>
+                    <div class="text-gray-500 mt-1">Saved for clients</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-white">847</div>
+                    <div class="text-gray-500 mt-1">Audits completed</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-white">41%</div>
+                    <div class="text-gray-500 mt-1">Avg. cost reduction</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-white">2 min</div>
+                    <div class="text-gray-500 mt-1">Time to results</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">The Hidden Cost of AI Tool Sprawl</h2>
+                <p class="text-xl text-gray-400">Most companies don't realize they're bleeding money</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-br from-red-500/10 to-transparent border border-red-500/20 rounded-2xl p-8 card-hover">
+                    <div class="w-14 h-14 bg-red-500/20 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-red-400">Duplicate Subscriptions</h3>
+                    <p class="text-gray-400">Teams sign up for overlapping tools without knowing. The average company pays for 3.2 tools that do the same thing.</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-orange-500/10 to-transparent border border-orange-500/20 rounded-2xl p-8 card-hover">
+                    <div class="w-14 h-14 bg-orange-500/20 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-orange-400">Unused Capacity</h3>
+                    <p class="text-gray-400">67% of AI tool licenses sit unused. You're paying enterprise prices for startup usage patterns.</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-yellow-500/10 to-transparent border border-yellow-500/20 rounded-2xl p-8 card-hover">
+                    <div class="w-14 h-14 bg-yellow-500/20 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-yellow-400">Wrong Tier Selection</h3>
+                    <p class="text-gray-400">82% of companies are on the wrong pricing tier. Either overpaying for features they don't use, or missing out on volume discounts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="py-24 bg-dark/50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <div class="text-primary font-semibold mb-4">THE SOLUTION</div>
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6">AI-Powered Stack Intelligence</h2>
+                    <p class="text-xl text-gray-400 mb-8">
+                        StackAudit connects to your billing data, analyzes usage patterns, and delivers 
+                        actionable recommendations that save thousands per month.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Automatic Detection</h4>
+                                <p class="text-gray-400">We identify every AI tool in your stack, including shadow IT subscriptions.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4">
+                            <div class="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Smart Recommendations</h4>
+                                <p class="text-gray-400">Get specific, actionable steps: "Cancel Tool X, downgrade Tool Y, negotiate Tool Z."</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4">
+                            <div class="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">ROI Tracking</h4>
+                                <p class="text-gray-400">Monitor savings over time and prove the value to stakeholders.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gradient-border glow">
+                    <div class="gradient-border-inner p-8">
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="text-gray-400">Monthly AI Spend Analysis</span>
+                            <span class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm">-41%</span>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm mb-2">
+                                    <span>ChatGPT Enterprise</span>
+                                    <span class="text-red-400">Overprovisioned</span>
+                                </div>
+                                <div class="h-2 bg-dark rounded-full overflow-hidden">
+                                    <div class="h-full w-3/4 bg-gradient-to-r from-red-500 to-red-400 rounded-full"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between text-sm mb-2">
+                                    <span>Anthropic Claude</span>
+                                    <span class="text-green-400">Optimized</span>
+                                </div>
+                                <div class="h-2 bg-dark rounded-full overflow-hidden">
+                                    <div class="h-full w-1/2 bg-gradient-to-r from-green-500 to-green-400 rounded-full"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between text-sm mb-2">
+                                    <span>Jasper AI</span>
+                                    <span class="text-yellow-400">Duplicate</span>
+                                </div>
+                                <div class="h-2 bg-dark rounded-full overflow-hidden">
+                                    <div class="h-full w-full bg-gradient-to-r from-yellow-500 to-yellow-400 rounded-full"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between text-sm mb-2">
+                                    <span>Copy.ai</span>
+                                    <span class="text-red-400">Cancel</span>
+                                </div>
+                                <div class="h-2 bg-dark rounded-full overflow-hidden">
+                                    <div class="h-full w-full bg-gradient-to-r from-red-500 to-red-400 rounded-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 p-4 bg-green-500/10 border border-green-500/20 rounded-xl">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="text-green-400 font-semibold">Potential Savings Found</div>
+                                    <div class="text-2xl font-bold">$4,280/month</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="text-primary font-semibold mb-4">HOW IT WORKS</div>
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Three Steps to Savings</h2>
+                <p class="text-xl text-gray-400">From signup to savings in under 5 minutes</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="relative">
+                    <div class="absolute -top-4 -left-4 w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-2xl font-bold">1</div>
+                    <div class="bg-dark border border-white/10 rounded-2xl p-8 pt-12 h-full card-hover">
+                        <div class="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Connect Your Tools</h3>
+                        <p class="text-gray-400">Link your billing accounts or upload invoices. We support 200+ AI tools and integrate with Stripe, QuickBooks, and more.</p>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div class="absolute -top-4 -left-4 w-12 h-12 bg-secondary rounded-xl flex items-center justify-center text-2xl font-bold">2</div>
+                    <div class="bg-dark border border-white/10 rounded-2xl p-8 pt-12 h-full card-hover">
+                        <div class="w-16 h-16 bg-secondary/20 rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">AI Analyzes Your Stack</h3>
+                        <p class="text-gray-400">Our AI engine maps your tools, identifies overlaps, analyzes usage patterns, and benchmarks against 10,000+ companies.</p>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div class="absolute -top-4 -left-4 w-12 h-12 bg-accent rounded-xl flex items-center justify-center text-2xl font-bold">3</div>
+                    <div class="bg-dark border border-white/10 rounded-2xl p-8 pt-12 h-full card-hover">
+                        <div class="w-16 h-16 bg-accent/20 rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Get Your Savings Plan</h3>
+                        <p class="text-gray-400">Receive a prioritized action plan with exact savings per recommendation. One-click implementation for supported tools.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="py-24 bg-dark/50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="text-primary font-semibold mb-4">TESTIMONIALS</div>
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Loved by Finance & Ops Teams</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-dark border border-white/10 rounded-2xl p-8 card-hover">
+                    <div class="flex items-center gap-1 mb-4">
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    </div>
+                    <p class="text-gray-300 mb-6">"We were paying for 7 different AI writing tools across departments. StackAudit found them all and saved us $8,400/month. The ROI was instant."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-full"></div>
+                        <div>
+                            <div class="font-semibold">Sarah Chen</div>
+                            <div class="text-gray-500 text-sm">VP of Operations, TechScale</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-dark border border-white/10 rounded-2xl p-8 card-hover">
+                    <div class="flex items-center gap-1 mb-4">
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    </div>
+                    <p class="text-gray-300 mb-6">"I thought our AI spend was optimized. StackAudit showed me we were on Enterprise tiers for tools where Team plans would suffice. Saved $52K annually."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-secondary to-primary rounded-full"></div>
+                        <div>
+                            <div class="font-semibold">Marcus Johnson</div>
+                            <div class="text-gray-500 text-sm">CFO, DataDriven Inc</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-dark border border-white/10 rounded-2xl p-8 card-hover">
+                    <div class="flex items-center gap-1 mb-4">
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    </div>
+                    <p class="text-gray-300 mb-6">"The free audit alone showed us $3,000 in monthly waste. Upgrading to Pro to get the full recommendations was a no-brainer. Best $49 we spend."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-accent to-secondary rounded-full"></div>
+                        <div>
+                            <div class="font-semibold">Emily Rodriguez</div>
+                            <div class="text-gray-500 text-sm">Head of IT, Startup Labs</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Logo Cloud -->
+            <div class="mt-16 pt-16 border-t border-white/10">
+                <p class="text-center text-gray-500 mb-8">Trusted by teams at</p>
+                <div class="flex flex-wrap justify-center items-center gap-12 opacity-50">
+                    <span class="text-2xl font-bold text-gray-400">Stripe</span>
+                    <span class="text-2xl font-bold text-gray-400">Notion</span>
+                    <span class="text-2xl font-bold text-gray-400">Figma</span>
+                    <span class="text-2xl font-bold text-gray-400">Linear</span>
+                    <span class="text-2xl font-bold text-gray-400">Vercel</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="text-primary font-semibold mb-4">PRICING</div>
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Simple, Transparent Pricing</h2>
+                <p class="text-xl text-gray-400">Start free. Upgrade when you see the value.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Free Tier -->
+                <div class="bg-dark border border-white/10 rounded-2xl p-8 card-hover">
+                    <div class="text-gray-400 font-semibold mb-2">FREE AUDIT</div>
+                    <div class="text-4xl font-bold mb-4">$0</div>
+                    <p class="text-gray-400 mb-8">Perfect for seeing what you could save</p>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span>1 audit per month</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span>Up to 10 tools analyzed</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span>Basic savings estimate</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span>PDF report</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-500">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                            <span>Detailed recommendations</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="#" class="block w-full text-center border border-white/20 hover:border-white/40 px-6 py-3 rounded-xl font-semibold transition">
+                        Start Free Audit
+                    </a>
+                </div>
+                
+                <!-- Pro Tier -->
+                <div class="relative gradient-border glow">
+                    <div class="gradient-border-inner p-8 h-full">
+                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-accent px-4 py-1 rounded-full text-sm font-semibold">
+                            MOST POPULAR
+                        </div>
+                        <div class="text-primary font-semibold mb-2">PRO</div>
+                        <div class="text-4xl font-bold mb-1">$49<span class="text-lg text-gray-400">/month</span></div>
+                        <p class="text-gray-400 mb-8">For teams serious about optimization</p>
+                        
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span>Unlimited audits</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span>Unlimited tools analyzed</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span>Detailed recommendations</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span>Savings tracking dashboard</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span>Slack/Email alerts</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span>Priority support</span>
+                            </li>
+                        </ul>
+                        
+                        <a href="#" class="block w-full text-center bg-primary hover:bg-primary/90 px-6 py-3 rounded-xl font-semibold transition">
+                            Get Started →
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Enterprise Tier -->
+                <div class="bg-dark border border-white/10 rounded-2xl p-8 card-hover">
+                    <div class="text-gray-400 font-semibold mb-2">ENTERPRISE</div>
+                    <div class="text-4xl font-bold mb-4">Custom</div>
+                    <p class="text-gray-400 mb-8">For large organizations with complex needs</p>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span>Everything in Pro</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span>SSO & SAML</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span>Custom integrations</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span>Dedicated account manager</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span>SLA guarantee</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="#" class="block w-full text-center border border-white/20 hover:border-white/40 px-6 py-3 rounded-xl font-semibold transition">
+                        Contact Sales
+                    </a>
+                </div>
+            </div>
+            
+            <p class="text-center text-gray-500 mt-8">All plans include 14-day money-back guarantee</p>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 bg-dark/50">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="text-primary font-semibold mb-4">FAQ</div>
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Common Questions</h2>
+            </div>
+            
+            <div class="space-y-4">
+                <details class="group bg-dark border border-white/10 rounded-xl overflow-hidden">
+                    <summary class="flex items-center justify-between p-6 cursor-pointer">
+                        <span class="font-semibold">How does StackAudit find my AI tools?</span>
+                        <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-400">
+                        We integrate with your billing systems (Stripe, QuickBooks, corporate cards) and can also scan your SSO provider. You can also manually upload invoices or add tools directly. We detect 200+ AI tools automatically.
+                    </div>
+                </details>
+                
+                <details class="group bg-dark border border-white/10 rounded-xl overflow-hidden">
+                    <summary class="flex items-center justify-between p-6 cursor-pointer">
+                        <span class="font-semibold">Is my billing data secure?</span>
+                        <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-400">
+                        Absolutely. We're SOC 2 Type II certified and GDPR compliant. We use read-only access where possible and never store sensitive payment details. Data is encrypted in transit and at rest.
+                    </div>
+                </details>
+                
+                <details class="group bg-dark border border-white/10 rounded-xl overflow-hidden">
+                    <summary class="flex items-center justify-between p-6 cursor-pointer">
+                        <span class="font-semibold">How accurate are the savings estimates?</span>
+                        <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-400">
+                        Our estimates are typically within 10% of actual savings. We base recommendations on real usage data and current pricing from providers. Many customers exceed our estimates once they implement all recommendations.
+                    </div>
+                </details>
+                
+                <details class="group bg-dark border border-white/10 rounded-xl overflow-hidden">
+                    <summary class="flex items-center justify-between p-6 cursor-pointer">
+                        <span class="font-semibold">What if I don't find any savings?</span>
+                        <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-400">
+                        That would be amazing—it means you're already optimized! But in 3 years, we've never had a company with zero savings opportunities. If you somehow don't find value, we offer a 14-day money-back guarantee.
+                    </div>
+                </details>
+                
+                <details class="group bg-dark border border-white/10 rounded-xl overflow-hidden">
+                    <summary class="flex items-center justify-between p-6 cursor-pointer">
+                        <span class="font-semibold">Can I cancel anytime?</span>
+                        <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-400">
+                        Yes, cancel anytime with one click. No contracts, no cancellation fees. We believe in earning your business every month.
+                    </div>
+                </details>
+                
+                <details class="group bg-dark border border-white/10 rounded-xl overflow-hidden">
+                    <summary class="flex items-center justify-between p-6 cursor-pointer">
+                        <span class="font-semibold">Do you help implement the recommendations?</span>
+                        <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-400">
+                        Pro users get detailed step-by-step guides. For supported tools, we offer one-click actions (like downgrading tiers). Enterprise customers get a dedicated success manager who can handle implementations for you.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="py-24">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-5xl font-bold mb-6">Stop Overpaying for AI Tools</h2>
+            <p class="text-xl text-gray-400 mb-10">Join 500+ companies that have already saved millions with StackAudit</p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#pricing" class="bg-primary hover:bg-primary/90 px-8 py-4 rounded-xl font-semibold text-lg transition glow">
+                    Get Your Free Audit →
+                </a>
+                <a href="#" class="border border-white/20 hover:border-white/40 px-8 py-4 rounded-xl font-semibold text-lg transition">
+                    Schedule Demo
+                </a>
+            </div>
+            
+            <div class="mt-12 flex flex-wrap items-center justify-center gap-8 text-gray-500">
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    <span>No credit card required</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    <span>2-minute setup</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    <span>14-day money-back guarantee</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                    </div>
+                    <span class="text-xl font-bold">StackAudit<span class="text-primary">.ai</span></span>
+                </div>
+                
+                <div class="flex gap-8 text-gray-400">
+                    <a href="#" class="hover:text-white transition">Privacy</a>
+                    <a href="#" class="hover:text-white transition">Terms</a>
+                    <a href="#" class="hover:text-white transition">Security</a>
+                    <a href="#" class="hover:text-white transition">Contact</a>
+                </div>
+                
+                <div class="text-gray-500 text-sm">
+                    © 2025 StackAudit.ai. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

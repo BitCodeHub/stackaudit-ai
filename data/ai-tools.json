@@ -1,0 +1,2553 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-01-19",
+  "totalTools": 112,
+  "categories": [
+    "LLM/Chat AI",
+    "Coding/Development",
+    "Writing/Content",
+    "Image Generation",
+    "Video",
+    "Voice/Audio",
+    "Automation",
+    "Research/Analysis",
+    "Design",
+    "Productivity",
+    "Data/Analytics",
+    "Marketing",
+    "Customer Support"
+  ],
+  "tools": [
+    {
+      "id": "chatgpt",
+      "name": "ChatGPT",
+      "vendor": "OpenAI",
+      "category": "LLM/Chat AI",
+      "description": "Conversational AI assistant for general tasks, writing, coding, and analysis",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "GPT-3.5, limited usage"},
+          {"name": "Plus", "price": 20, "period": "monthly", "limits": "GPT-4, 40 msgs/3hr"},
+          {"name": "Team", "price": 25, "period": "monthly/user", "limits": "Higher limits, admin controls"},
+          {"name": "Enterprise", "price": "custom", "limits": "Unlimited, SSO, dedicated support"}
+        ]
+      },
+      "useCases": ["Content writing", "Code assistance", "Research", "Brainstorming", "Data analysis", "Customer support drafts"],
+      "overlaps": ["claude", "gemini", "perplexity", "copilot"],
+      "roiIndicators": {
+        "timesSaved": "2-4 hours/day for knowledge workers",
+        "costReduction": "30-50% reduction in content creation time",
+        "productivityGain": "25-40% increase in output"
+      },
+      "integrations": ["Zapier", "Microsoft 365", "Slack", "API"],
+      "strengths": ["Versatile", "Large user base", "Strong plugin ecosystem"],
+      "weaknesses": ["Rate limits on free tier", "Occasional hallucinations"]
+    },
+    {
+      "id": "claude",
+      "name": "Claude",
+      "vendor": "Anthropic",
+      "category": "LLM/Chat AI",
+      "description": "AI assistant focused on safety, nuanced understanding, and long-form content",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Claude 3.5 Sonnet, limited usage"},
+          {"name": "Pro", "price": 20, "period": "monthly", "limits": "5x usage, Claude 3 Opus"},
+          {"name": "Team", "price": 25, "period": "monthly/user", "limits": "Higher limits, collaboration"},
+          {"name": "API", "price": "usage-based", "limits": "Pay per token"}
+        ]
+      },
+      "useCases": ["Long document analysis", "Complex reasoning", "Code review", "Academic writing", "Legal/medical content"],
+      "overlaps": ["chatgpt", "gemini", "perplexity"],
+      "roiIndicators": {
+        "timesSaved": "3-5 hours/day for researchers",
+        "costReduction": "40-60% reduction in document review time",
+        "productivityGain": "35-50% increase in analysis capacity"
+      },
+      "integrations": ["API", "Slack", "Notion", "AWS Bedrock"],
+      "strengths": ["200K context window", "Strong reasoning", "Safety-focused"],
+      "weaknesses": ["Smaller ecosystem than ChatGPT"]
+    },
+    {
+      "id": "gemini",
+      "name": "Gemini",
+      "vendor": "Google",
+      "category": "LLM/Chat AI",
+      "description": "Google's multimodal AI with deep Google Workspace integration",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Gemini Pro, basic features"},
+          {"name": "Advanced", "price": 20, "period": "monthly", "limits": "Gemini Ultra, 2TB storage"},
+          {"name": "Business", "price": 20, "period": "monthly/user", "limits": "Workspace integration"},
+          {"name": "Enterprise", "price": 30, "period": "monthly/user", "limits": "Advanced security, controls"}
+        ]
+      },
+      "useCases": ["Google Workspace automation", "Multimodal tasks", "Research", "Email drafting", "Document creation"],
+      "overlaps": ["chatgpt", "claude", "microsoft-copilot"],
+      "roiIndicators": {
+        "timesSaved": "2-3 hours/day for Google Workspace users",
+        "costReduction": "25-35% reduction in email/doc time",
+        "productivityGain": "20-30% increase in workflow efficiency"
+      },
+      "integrations": ["Google Workspace", "Google Cloud", "Android"],
+      "strengths": ["Native Google integration", "Multimodal capabilities"],
+      "weaknesses": ["Less powerful than GPT-4/Claude for complex tasks"]
+    },
+    {
+      "id": "perplexity",
+      "name": "Perplexity AI",
+      "vendor": "Perplexity",
+      "category": "LLM/Chat AI",
+      "description": "AI-powered search engine with cited sources and real-time information",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Limited Pro searches"},
+          {"name": "Pro", "price": 20, "period": "monthly", "limits": "Unlimited Pro, GPT-4, Claude"}
+        ]
+      },
+      "useCases": ["Research", "Fact-checking", "Current events", "Academic research", "Competitive analysis"],
+      "overlaps": ["chatgpt", "claude", "you-com"],
+      "roiIndicators": {
+        "timesSaved": "1-2 hours/day for researchers",
+        "costReduction": "50% reduction in research time",
+        "productivityGain": "Higher accuracy with citations"
+      },
+      "integrations": ["API", "Browser extension", "Mobile apps"],
+      "strengths": ["Real-time info", "Source citations", "Multiple AI models"],
+      "weaknesses": ["Less creative writing capability"]
+    },
+    {
+      "id": "github-copilot",
+      "name": "GitHub Copilot",
+      "vendor": "GitHub/Microsoft",
+      "category": "Coding/Development",
+      "description": "AI pair programmer that suggests code completions and entire functions",
+      "pricing": {
+        "tiers": [
+          {"name": "Individual", "price": 10, "period": "monthly", "limits": "Full features"},
+          {"name": "Business", "price": 19, "period": "monthly/user", "limits": "Organization management"},
+          {"name": "Enterprise", "price": 39, "period": "monthly/user", "limits": "Fine-tuning, advanced security"}
+        ]
+      },
+      "useCases": ["Code completion", "Test generation", "Documentation", "Code explanation", "Refactoring"],
+      "overlaps": ["cursor", "codeium", "tabnine", "amazon-codewhisperer"],
+      "roiIndicators": {
+        "timesSaved": "30-50% faster coding",
+        "costReduction": "$5,000-15,000/year per developer",
+        "productivityGain": "55% faster task completion (GitHub study)"
+      },
+      "integrations": ["VS Code", "JetBrains", "Neovim", "Visual Studio"],
+      "strengths": ["Deep GitHub integration", "Excellent suggestions", "Wide IDE support"],
+      "weaknesses": ["Requires internet", "Privacy concerns for enterprise"]
+    },
+    {
+      "id": "cursor",
+      "name": "Cursor",
+      "vendor": "Anysphere",
+      "category": "Coding/Development",
+      "description": "AI-first code editor with chat, code generation, and intelligent editing",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "2000 completions/month"},
+          {"name": "Pro", "price": 20, "period": "monthly", "limits": "Unlimited, fast requests"},
+          {"name": "Business", "price": 40, "period": "monthly/user", "limits": "Team features, SSO"}
+        ]
+      },
+      "useCases": ["Full codebase understanding", "Multi-file edits", "Code generation", "Debugging", "Refactoring"],
+      "overlaps": ["github-copilot", "codeium", "windsurf"],
+      "roiIndicators": {
+        "timesSaved": "40-60% faster development",
+        "costReduction": "Significant for complex projects",
+        "productivityGain": "2-3x speed on refactoring tasks"
+      },
+      "integrations": ["VS Code extensions compatible", "Git"],
+      "strengths": ["Codebase-aware", "Excellent for large projects", "Chat interface"],
+      "weaknesses": ["New editor to learn", "Smaller extension ecosystem"]
+    },
+    {
+      "id": "codeium",
+      "name": "Codeium",
+      "vendor": "Codeium",
+      "category": "Coding/Development",
+      "description": "Free AI code completion tool with broad IDE support",
+      "pricing": {
+        "tiers": [
+          {"name": "Individual", "price": 0, "limits": "Full features, forever free"},
+          {"name": "Teams", "price": 12, "period": "monthly/user", "limits": "Admin, analytics"},
+          {"name": "Enterprise", "price": "custom", "limits": "On-prem, fine-tuning"}
+        ]
+      },
+      "useCases": ["Code completion", "Search", "Chat assistance", "Documentation"],
+      "overlaps": ["github-copilot", "tabnine", "amazon-codewhisperer"],
+      "roiIndicators": {
+        "timesSaved": "25-40% faster coding",
+        "costReduction": "Free for individuals",
+        "productivityGain": "Similar to Copilot for basic tasks"
+      },
+      "integrations": ["40+ IDEs", "VS Code", "JetBrains", "Vim"],
+      "strengths": ["Free tier", "Wide IDE support", "Fast"],
+      "weaknesses": ["Less accurate than Copilot for complex code"]
+    },
+    {
+      "id": "tabnine",
+      "name": "Tabnine",
+      "vendor": "Tabnine",
+      "category": "Coding/Development",
+      "description": "AI code assistant with on-premise and privacy-focused options",
+      "pricing": {
+        "tiers": [
+          {"name": "Basic", "price": 0, "limits": "Short completions"},
+          {"name": "Pro", "price": 12, "period": "monthly", "limits": "Full AI completions"},
+          {"name": "Enterprise", "price": "custom", "limits": "On-prem, private models"}
+        ]
+      },
+      "useCases": ["Code completion", "Privacy-focused development", "Air-gapped environments"],
+      "overlaps": ["github-copilot", "codeium", "amazon-codewhisperer"],
+      "roiIndicators": {
+        "timesSaved": "20-35% faster coding",
+        "costReduction": "Enterprise compliance savings",
+        "productivityGain": "Good for regulated industries"
+      },
+      "integrations": ["Most major IDEs"],
+      "strengths": ["Privacy-first", "On-premise option", "Team training"],
+      "weaknesses": ["Less powerful than Copilot"]
+    },
+    {
+      "id": "amazon-codewhisperer",
+      "name": "Amazon CodeWhisperer",
+      "vendor": "Amazon",
+      "category": "Coding/Development",
+      "description": "AWS-integrated AI code generator with security scanning",
+      "pricing": {
+        "tiers": [
+          {"name": "Individual", "price": 0, "limits": "Full features"},
+          {"name": "Professional", "price": 19, "period": "monthly/user", "limits": "Admin, SSO, reference tracking"}
+        ]
+      },
+      "useCases": ["AWS development", "Security scanning", "Code completion", "Cloud infrastructure"],
+      "overlaps": ["github-copilot", "codeium"],
+      "roiIndicators": {
+        "timesSaved": "30% faster AWS development",
+        "costReduction": "Free for individuals",
+        "productivityGain": "Best for AWS-heavy workflows"
+      },
+      "integrations": ["VS Code", "JetBrains", "AWS Cloud9", "Lambda console"],
+      "strengths": ["AWS expertise", "Security scanning", "Free tier"],
+      "weaknesses": ["Less general-purpose than Copilot"]
+    },
+    {
+      "id": "replit-ai",
+      "name": "Replit AI",
+      "vendor": "Replit",
+      "category": "Coding/Development",
+      "description": "AI coding assistant integrated into browser-based IDE",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Basic AI features"},
+          {"name": "Replit Core", "price": 20, "period": "monthly", "limits": "Advanced AI, more compute"}
+        ]
+      },
+      "useCases": ["Learning to code", "Rapid prototyping", "Collaboration", "Deployment"],
+      "overlaps": ["cursor", "github-copilot"],
+      "roiIndicators": {
+        "timesSaved": "Fast prototyping",
+        "costReduction": "No local setup needed",
+        "productivityGain": "Instant deployment"
+      },
+      "integrations": ["GitHub", "Built-in hosting"],
+      "strengths": ["Browser-based", "Instant deployment", "Great for beginners"],
+      "weaknesses": ["Limited for large projects"]
+    },
+    {
+      "id": "jasper",
+      "name": "Jasper",
+      "vendor": "Jasper AI",
+      "category": "Writing/Content",
+      "description": "AI content platform for marketing teams with brand voice training",
+      "pricing": {
+        "tiers": [
+          {"name": "Creator", "price": 39, "period": "monthly", "limits": "1 seat, 1 brand voice"},
+          {"name": "Pro", "price": 59, "period": "monthly", "limits": "1 seat, 3 brand voices, campaigns"},
+          {"name": "Business", "price": "custom", "limits": "Unlimited features, API"}
+        ]
+      },
+      "useCases": ["Marketing copy", "Blog posts", "Ad copy", "Social media", "Email campaigns", "Product descriptions"],
+      "overlaps": ["copy-ai", "writesonic", "chatgpt"],
+      "roiIndicators": {
+        "timesSaved": "5-10 hours/week on content",
+        "costReduction": "80% reduction in copywriting costs",
+        "productivityGain": "10x content output"
+      },
+      "integrations": ["Surfer SEO", "Grammarly", "Chrome extension", "API"],
+      "strengths": ["Brand voice training", "Marketing-focused", "Templates"],
+      "weaknesses": ["Expensive for individuals", "Less technical writing ability"]
+    },
+    {
+      "id": "copy-ai",
+      "name": "Copy.ai",
+      "vendor": "Copy.ai",
+      "category": "Writing/Content",
+      "description": "AI copywriting tool with workflow automation for go-to-market teams",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "2,000 words/month"},
+          {"name": "Pro", "price": 36, "period": "monthly", "limits": "Unlimited words"},
+          {"name": "Team", "price": 186, "period": "monthly", "limits": "5 seats, workflows"},
+          {"name": "Enterprise", "price": "custom", "limits": "API, SSO, dedicated support"}
+        ]
+      },
+      "useCases": ["Sales emails", "Social posts", "Product descriptions", "Ad copy", "Blog intros"],
+      "overlaps": ["jasper", "writesonic", "rytr"],
+      "roiIndicators": {
+        "timesSaved": "4-8 hours/week",
+        "costReduction": "70% reduction in content costs",
+        "productivityGain": "5x email output"
+      },
+      "integrations": ["HubSpot", "Salesforce", "Zapier", "API"],
+      "strengths": ["Workflow automation", "CRM integrations", "Good free tier"],
+      "weaknesses": ["Less powerful for long-form"]
+    },
+    {
+      "id": "writesonic",
+      "name": "Writesonic",
+      "vendor": "Writesonic",
+      "category": "Writing/Content",
+      "description": "AI writing platform with SEO tools and multi-language support",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "10,000 words"},
+          {"name": "Individual", "price": 16, "period": "monthly", "limits": "100K premium words"},
+          {"name": "Team", "price": 13, "period": "monthly/user", "limits": "Collaboration features"},
+          {"name": "Enterprise", "price": "custom", "limits": "Custom AI, API"}
+        ]
+      },
+      "useCases": ["SEO content", "Blog posts", "Landing pages", "Multilingual content"],
+      "overlaps": ["jasper", "copy-ai", "rytr"],
+      "roiIndicators": {
+        "timesSaved": "3-6 hours/week",
+        "costReduction": "Affordable pricing",
+        "productivityGain": "Fast content scaling"
+      },
+      "integrations": ["WordPress", "Zapier", "Surfer SEO"],
+      "strengths": ["Good pricing", "Built-in SEO", "Multiple languages"],
+      "weaknesses": ["Variable quality"]
+    },
+    {
+      "id": "grammarly",
+      "name": "Grammarly",
+      "vendor": "Grammarly",
+      "category": "Writing/Content",
+      "description": "AI writing assistant for grammar, clarity, tone, and style",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Basic grammar"},
+          {"name": "Premium", "price": 12, "period": "monthly", "limits": "Advanced suggestions"},
+          {"name": "Business", "price": 15, "period": "monthly/user", "limits": "Style guides, analytics"}
+        ]
+      },
+      "useCases": ["Grammar checking", "Tone adjustment", "Clarity improvement", "Plagiarism detection"],
+      "overlaps": ["hemingway", "prowritingaid", "quillbot"],
+      "roiIndicators": {
+        "timesSaved": "30 min/day on editing",
+        "costReduction": "Reduce proofreading needs",
+        "productivityGain": "Consistent writing quality"
+      },
+      "integrations": ["Browser", "MS Office", "Google Docs", "Desktop apps"],
+      "strengths": ["Ubiquitous", "Real-time", "Trusted"],
+      "weaknesses": ["AI generation limited"]
+    },
+    {
+      "id": "quillbot",
+      "name": "QuillBot",
+      "vendor": "QuillBot",
+      "category": "Writing/Content",
+      "description": "AI paraphrasing and writing tool for rewording and summarization",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "125 words/paraphrase"},
+          {"name": "Premium", "price": 10, "period": "monthly", "limits": "Unlimited, all modes"}
+        ]
+      },
+      "useCases": ["Paraphrasing", "Summarization", "Grammar checking", "Academic writing"],
+      "overlaps": ["grammarly", "wordtune"],
+      "roiIndicators": {
+        "timesSaved": "2-3 hours/week on rewrites",
+        "costReduction": "Affordable alternative",
+        "productivityGain": "Faster content repurposing"
+      },
+      "integrations": ["Chrome", "Word", "Google Docs"],
+      "strengths": ["Best paraphrasing", "Multiple modes", "Affordable"],
+      "weaknesses": ["Limited beyond paraphrasing"]
+    },
+    {
+      "id": "notion-ai",
+      "name": "Notion AI",
+      "vendor": "Notion",
+      "category": "Writing/Content",
+      "description": "AI assistant built into Notion for writing, summarizing, and organizing",
+      "pricing": {
+        "tiers": [
+          {"name": "Add-on", "price": 10, "period": "monthly/member", "limits": "Unlimited AI features"}
+        ]
+      },
+      "useCases": ["Document writing", "Summarization", "Meeting notes", "Task extraction", "Translation"],
+      "overlaps": ["chatgpt", "coda-ai", "clickup-ai"],
+      "roiIndicators": {
+        "timesSaved": "1-2 hours/day for Notion users",
+        "costReduction": "Integrated = no context switching",
+        "productivityGain": "Seamless workflow"
+      },
+      "integrations": ["Native Notion integration"],
+      "strengths": ["Native integration", "Context-aware", "Great for notes"],
+      "weaknesses": ["Only works in Notion"]
+    },
+    {
+      "id": "midjourney",
+      "name": "Midjourney",
+      "vendor": "Midjourney",
+      "category": "Image Generation",
+      "description": "AI art generator known for artistic, stylized image creation",
+      "pricing": {
+        "tiers": [
+          {"name": "Basic", "price": 10, "period": "monthly", "limits": "200 images/month"},
+          {"name": "Standard", "price": 30, "period": "monthly", "limits": "15 fast hours"},
+          {"name": "Pro", "price": 60, "period": "monthly", "limits": "30 fast hours, stealth"},
+          {"name": "Mega", "price": 120, "period": "monthly", "limits": "60 fast hours"}
+        ]
+      },
+      "useCases": ["Marketing visuals", "Concept art", "Social media", "Book covers", "Product mockups"],
+      "overlaps": ["dall-e", "stable-diffusion", "leonardo-ai", "ideogram"],
+      "roiIndicators": {
+        "timesSaved": "Hours per image vs traditional",
+        "costReduction": "90% reduction in illustration costs",
+        "productivityGain": "100x image creation speed"
+      },
+      "integrations": ["Discord", "Web app"],
+      "strengths": ["Best artistic quality", "Consistent style", "Active community"],
+      "weaknesses": ["Discord-based workflow", "Less control"]
+    },
+    {
+      "id": "dall-e",
+      "name": "DALL-E 3",
+      "vendor": "OpenAI",
+      "category": "Image Generation",
+      "description": "OpenAI's image generator with excellent prompt understanding",
+      "pricing": {
+        "tiers": [
+          {"name": "ChatGPT Plus", "price": 20, "period": "monthly", "limits": "Included with Plus"},
+          {"name": "API", "price": 0.04, "period": "per image", "limits": "Standard quality"},
+          {"name": "API HD", "price": 0.08, "period": "per image", "limits": "HD quality"}
+        ]
+      },
+      "useCases": ["Marketing images", "Social media", "Illustrations", "Presentations"],
+      "overlaps": ["midjourney", "stable-diffusion", "leonardo-ai"],
+      "roiIndicators": {
+        "timesSaved": "Quick iterations",
+        "costReduction": "Pay per image",
+        "productivityGain": "Integrated with ChatGPT"
+      },
+      "integrations": ["ChatGPT", "API", "Microsoft Designer"],
+      "strengths": ["Best prompt understanding", "ChatGPT integration", "Text in images"],
+      "weaknesses": ["Less artistic than Midjourney"]
+    },
+    {
+      "id": "stable-diffusion",
+      "name": "Stable Diffusion",
+      "vendor": "Stability AI",
+      "category": "Image Generation",
+      "description": "Open-source image generation model with full customization",
+      "pricing": {
+        "tiers": [
+          {"name": "Local", "price": 0, "limits": "Free, run locally"},
+          {"name": "DreamStudio", "price": 10, "period": "1000 credits", "limits": "Cloud-hosted"},
+          {"name": "API", "price": "usage-based", "limits": "Per image"}
+        ]
+      },
+      "useCases": ["Custom models", "Batch generation", "NSFW content", "Fine-tuning", "Product photos"],
+      "overlaps": ["midjourney", "dall-e", "comfyui"],
+      "roiIndicators": {
+        "timesSaved": "Unlimited local generation",
+        "costReduction": "Free if local GPU",
+        "productivityGain": "Full customization"
+      },
+      "integrations": ["ComfyUI", "Automatic1111", "API"],
+      "strengths": ["Open source", "Full control", "Custom training"],
+      "weaknesses": ["Technical setup required"]
+    },
+    {
+      "id": "leonardo-ai",
+      "name": "Leonardo.ai",
+      "vendor": "Leonardo AI",
+      "category": "Image Generation",
+      "description": "AI image platform for game assets and creative production",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "150 tokens/day"},
+          {"name": "Apprentice", "price": 12, "period": "monthly", "limits": "8,500 tokens/month"},
+          {"name": "Artisan", "price": 30, "period": "monthly", "limits": "25,000 tokens/month"},
+          {"name": "Maestro", "price": 60, "period": "monthly", "limits": "60,000 tokens/month"}
+        ]
+      },
+      "useCases": ["Game assets", "Character design", "Concept art", "Product images"],
+      "overlaps": ["midjourney", "stable-diffusion"],
+      "roiIndicators": {
+        "timesSaved": "10x faster than manual design",
+        "costReduction": "Great for game studios",
+        "productivityGain": "Consistent style training"
+      },
+      "integrations": ["API", "Web app"],
+      "strengths": ["Custom models", "Consistent characters", "Game-focused"],
+      "weaknesses": ["Token system"]
+    },
+    {
+      "id": "ideogram",
+      "name": "Ideogram",
+      "vendor": "Ideogram",
+      "category": "Image Generation",
+      "description": "AI image generator excelling at text rendering in images",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "25 prompts/day"},
+          {"name": "Basic", "price": 7, "period": "monthly", "limits": "100 prompts/day"},
+          {"name": "Plus", "price": 16, "period": "monthly", "limits": "Unlimited slow, priority"},
+          {"name": "Pro", "price": 48, "period": "monthly", "limits": "Unlimited fast"}
+        ]
+      },
+      "useCases": ["Logos with text", "Posters", "Social graphics", "Typography art"],
+      "overlaps": ["dall-e", "midjourney"],
+      "roiIndicators": {
+        "timesSaved": "Best for text-heavy designs",
+        "costReduction": "Affordable pricing",
+        "productivityGain": "Reliable text generation"
+      },
+      "integrations": ["Web app", "API"],
+      "strengths": ["Best text in images", "Good quality", "Affordable"],
+      "weaknesses": ["Newer, smaller community"]
+    },
+    {
+      "id": "canva-ai",
+      "name": "Canva Magic Studio",
+      "vendor": "Canva",
+      "category": "Design",
+      "description": "AI-powered design tools integrated into Canva",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "50 uses/month"},
+          {"name": "Pro", "price": 13, "period": "monthly", "limits": "500 uses/month"},
+          {"name": "Teams", "price": 10, "period": "monthly/user", "limits": "500/user"}
+        ]
+      },
+      "useCases": ["Background removal", "Image expansion", "Text to image", "Magic resize", "Content generation"],
+      "overlaps": ["adobe-firefly", "photoshop-ai"],
+      "roiIndicators": {
+        "timesSaved": "2-3 hours/week on design tasks",
+        "costReduction": "Reduces designer workload",
+        "productivityGain": "Anyone can create pro designs"
+      },
+      "integrations": ["Native Canva", "Social platforms"],
+      "strengths": ["Easy to use", "All-in-one", "Templates"],
+      "weaknesses": ["Less powerful than dedicated tools"]
+    },
+    {
+      "id": "adobe-firefly",
+      "name": "Adobe Firefly",
+      "vendor": "Adobe",
+      "category": "Image Generation",
+      "description": "Adobe's commercially-safe AI image generation",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "25 credits/month"},
+          {"name": "Premium", "price": 5, "period": "monthly", "limits": "100 credits/month"},
+          {"name": "Creative Cloud", "price": "included", "limits": "With CC subscription"}
+        ]
+      },
+      "useCases": ["Stock replacement", "Generative fill", "Text effects", "Commercial projects"],
+      "overlaps": ["midjourney", "dall-e", "canva-ai"],
+      "roiIndicators": {
+        "timesSaved": "Hours on Photoshop editing",
+        "costReduction": "Less stock photo licensing",
+        "productivityGain": "10x faster compositing"
+      },
+      "integrations": ["Photoshop", "Illustrator", "Express", "Web"],
+      "strengths": ["Commercially safe", "Adobe integration", "High quality"],
+      "weaknesses": ["Credit limits"]
+    },
+    {
+      "id": "runway",
+      "name": "Runway",
+      "vendor": "Runway",
+      "category": "Video",
+      "description": "AI video generation and editing platform for creators",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "125 credits"},
+          {"name": "Standard", "price": 12, "period": "monthly", "limits": "625 credits/month"},
+          {"name": "Pro", "price": 28, "period": "monthly", "limits": "2,250 credits/month"},
+          {"name": "Unlimited", "price": 76, "period": "monthly", "limits": "Unlimited Gen-1/2"}
+        ]
+      },
+      "useCases": ["Text to video", "Image to video", "Video editing", "Background removal", "VFX"],
+      "overlaps": ["pika", "synthesia", "descript"],
+      "roiIndicators": {
+        "timesSaved": "80% reduction in video production time",
+        "costReduction": "Fraction of traditional VFX cost",
+        "productivityGain": "Create videos from text"
+      },
+      "integrations": ["Web app", "API"],
+      "strengths": ["Best Gen-2 quality", "Full editing suite", "Professional grade"],
+      "weaknesses": ["Credit consumption", "Cost for heavy use"]
+    },
+    {
+      "id": "pika",
+      "name": "Pika",
+      "vendor": "Pika Labs",
+      "category": "Video",
+      "description": "AI video generation with creative controls and lip sync",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "250 credits/month"},
+          {"name": "Standard", "price": 8, "period": "monthly", "limits": "700 credits/month"},
+          {"name": "Pro", "price": 28, "period": "monthly", "limits": "2,000 credits/month"},
+          {"name": "Unlimited", "price": 58, "period": "monthly", "limits": "Unlimited"}
+        ]
+      },
+      "useCases": ["Short videos", "Social content", "Animation", "Creative effects"],
+      "overlaps": ["runway", "kaiber", "luma-ai"],
+      "roiIndicators": {
+        "timesSaved": "Quick video generation",
+        "costReduction": "More affordable than Runway",
+        "productivityGain": "Fast creative iteration"
+      },
+      "integrations": ["Web app", "Discord"],
+      "strengths": ["Good quality", "Creative features", "Affordable"],
+      "weaknesses": ["Less editing features"]
+    },
+    {
+      "id": "synthesia",
+      "name": "Synthesia",
+      "vendor": "Synthesia",
+      "category": "Video",
+      "description": "AI video platform with realistic avatar presenters",
+      "pricing": {
+        "tiers": [
+          {"name": "Starter", "price": 22, "period": "monthly", "limits": "120 mins/year"},
+          {"name": "Creator", "price": 67, "period": "monthly", "limits": "360 mins/year"},
+          {"name": "Enterprise", "price": "custom", "limits": "Unlimited, custom avatars"}
+        ]
+      },
+      "useCases": ["Training videos", "Corporate comms", "Marketing videos", "Localization"],
+      "overlaps": ["heygen", "colossyan", "descript"],
+      "roiIndicators": {
+        "timesSaved": "90% reduction in video production",
+        "costReduction": "$10,000+ saved vs traditional video",
+        "productivityGain": "Minutes instead of days"
+      },
+      "integrations": ["API", "LMS platforms", "PowerPoint"],
+      "strengths": ["Realistic avatars", "100+ languages", "Enterprise ready"],
+      "weaknesses": ["Minutes-based pricing"]
+    },
+    {
+      "id": "heygen",
+      "name": "HeyGen",
+      "vendor": "HeyGen",
+      "category": "Video",
+      "description": "AI video generator with avatars, translation, and personalization",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "1 credit"},
+          {"name": "Creator", "price": 29, "period": "monthly", "limits": "15 credits/month"},
+          {"name": "Business", "price": 89, "period": "monthly", "limits": "30 credits/month"},
+          {"name": "Enterprise", "price": "custom", "limits": "Custom solutions"}
+        ]
+      },
+      "useCases": ["Sales videos", "Training", "Marketing", "Personalized outreach"],
+      "overlaps": ["synthesia", "colossyan"],
+      "roiIndicators": {
+        "timesSaved": "Create videos in minutes",
+        "costReduction": "80% cheaper than live video",
+        "productivityGain": "Scale personalized videos"
+      },
+      "integrations": ["API", "Zapier", "HubSpot"],
+      "strengths": ["Video translation", "Instant avatars", "Good lip sync"],
+      "weaknesses": ["Credit-based pricing"]
+    },
+    {
+      "id": "descript",
+      "name": "Descript",
+      "vendor": "Descript",
+      "category": "Video",
+      "description": "AI-powered video and podcast editor with text-based editing",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "1 hour transcription"},
+          {"name": "Hobbyist", "price": 12, "period": "monthly", "limits": "10 hours/month"},
+          {"name": "Creator", "price": 24, "period": "monthly", "limits": "30 hours/month"},
+          {"name": "Business", "price": 40, "period": "monthly", "limits": "Unlimited"}
+        ]
+      },
+      "useCases": ["Podcast editing", "Video editing", "Transcription", "Screen recording", "Overdub"],
+      "overlaps": ["riverside", "capcut", "adobe-podcast"],
+      "roiIndicators": {
+        "timesSaved": "50% faster editing",
+        "costReduction": "Replace multiple tools",
+        "productivityGain": "Edit video like a doc"
+      },
+      "integrations": ["Export to all platforms"],
+      "strengths": ["Text-based editing", "Overdub AI voice", "All-in-one"],
+      "weaknesses": ["Learning curve"]
+    },
+    {
+      "id": "opus-clip",
+      "name": "Opus Clip",
+      "vendor": "Opus",
+      "category": "Video",
+      "description": "AI tool to repurpose long videos into viral short clips",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "60 mins/month"},
+          {"name": "Starter", "price": 19, "period": "monthly", "limits": "200 mins/month"},
+          {"name": "Pro", "price": 49, "period": "monthly", "limits": "600 mins/month"},
+          {"name": "Business", "price": 149, "period": "monthly", "limits": "2,400 mins/month"}
+        ]
+      },
+      "useCases": ["YouTube to TikTok/Reels", "Podcast clips", "Webinar highlights"],
+      "overlaps": ["vidyo-ai", "capcut"],
+      "roiIndicators": {
+        "timesSaved": "10x faster repurposing",
+        "costReduction": "vs video editor rates",
+        "productivityGain": "One video = 10+ clips"
+      },
+      "integrations": ["YouTube", "Direct upload"],
+      "strengths": ["Viral score AI", "Auto captions", "One-click"],
+      "weaknesses": ["Only for repurposing"]
+    },
+    {
+      "id": "elevenlabs",
+      "name": "ElevenLabs",
+      "vendor": "ElevenLabs",
+      "category": "Voice/Audio",
+      "description": "AI voice synthesis and cloning with natural speech",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "10,000 chars/month"},
+          {"name": "Starter", "price": 5, "period": "monthly", "limits": "30,000 chars/month"},
+          {"name": "Creator", "price": 22, "period": "monthly", "limits": "100,000 chars/month"},
+          {"name": "Pro", "price": 99, "period": "monthly", "limits": "500,000 chars/month"},
+          {"name": "Scale", "price": 330, "period": "monthly", "limits": "2M chars/month"}
+        ]
+      },
+      "useCases": ["Voiceovers", "Audiobooks", "Podcasts", "Gaming", "Video dubbing"],
+      "overlaps": ["murf", "play-ht", "resemble-ai"],
+      "roiIndicators": {
+        "timesSaved": "90% faster than recording",
+        "costReduction": "vs voice actor rates",
+        "productivityGain": "Scale audio content"
+      },
+      "integrations": ["API", "Web app"],
+      "strengths": ["Best quality", "Voice cloning", "25+ languages"],
+      "weaknesses": ["Character limits"]
+    },
+    {
+      "id": "murf",
+      "name": "Murf AI",
+      "vendor": "Murf",
+      "category": "Voice/Audio",
+      "description": "AI voice generator for professional voiceovers",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "10 mins, no downloads"},
+          {"name": "Basic", "price": 29, "period": "monthly", "limits": "24 hours/year"},
+          {"name": "Pro", "price": 39, "period": "monthly", "limits": "48 hours/year"},
+          {"name": "Enterprise", "price": 99, "period": "monthly", "limits": "Unlimited"}
+        ]
+      },
+      "useCases": ["E-learning", "Corporate videos", "Ads", "IVR"],
+      "overlaps": ["elevenlabs", "play-ht", "speechify"],
+      "roiIndicators": {
+        "timesSaved": "Hours on voiceovers",
+        "costReduction": "80% vs voice talent",
+        "productivityGain": "Instant revisions"
+      },
+      "integrations": ["Canva", "Google Slides", "API"],
+      "strengths": ["Easy to use", "Voice changer", "Enterprise ready"],
+      "weaknesses": ["Less natural than ElevenLabs"]
+    },
+    {
+      "id": "suno",
+      "name": "Suno",
+      "vendor": "Suno AI",
+      "category": "Voice/Audio",
+      "description": "AI music generator creating full songs from text prompts",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "50 credits/day"},
+          {"name": "Pro", "price": 10, "period": "monthly", "limits": "2,500 credits/month"},
+          {"name": "Premier", "price": 30, "period": "monthly", "limits": "10,000 credits/month"}
+        ]
+      },
+      "useCases": ["Background music", "Jingles", "Creative projects", "Podcasts"],
+      "overlaps": ["udio", "soundraw", "aiva"],
+      "roiIndicators": {
+        "timesSaved": "Create music in seconds",
+        "costReduction": "vs licensing or composers",
+        "productivityGain": "Unlimited creative music"
+      },
+      "integrations": ["Web app"],
+      "strengths": ["Full songs with vocals", "Multiple genres", "Easy to use"],
+      "weaknesses": ["Commercial licensing unclear"]
+    },
+    {
+      "id": "otter-ai",
+      "name": "Otter.ai",
+      "vendor": "Otter.ai",
+      "category": "Voice/Audio",
+      "description": "AI meeting assistant for transcription and note-taking",
+      "pricing": {
+        "tiers": [
+          {"name": "Basic", "price": 0, "limits": "300 mins/month"},
+          {"name": "Pro", "price": 10, "period": "monthly", "limits": "1,200 mins/month"},
+          {"name": "Business", "price": 20, "period": "monthly/user", "limits": "6,000 mins/month"},
+          {"name": "Enterprise", "price": "custom", "limits": "Unlimited"}
+        ]
+      },
+      "useCases": ["Meeting transcription", "Note-taking", "Interviews", "Lectures"],
+      "overlaps": ["fireflies", "grain", "fathom"],
+      "roiIndicators": {
+        "timesSaved": "30 min/meeting on notes",
+        "costReduction": "Replace manual transcription",
+        "productivityGain": "Searchable meeting archive"
+      },
+      "integrations": ["Zoom", "Google Meet", "Microsoft Teams", "Slack"],
+      "strengths": ["Real-time transcription", "Speaker ID", "Integrations"],
+      "weaknesses": ["Accuracy varies"]
+    },
+    {
+      "id": "fireflies",
+      "name": "Fireflies.ai",
+      "vendor": "Fireflies",
+      "category": "Voice/Audio",
+      "description": "AI notetaker for meetings with transcription and summaries",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Unlimited transcription, limited storage"},
+          {"name": "Pro", "price": 10, "period": "monthly", "limits": "Full features"},
+          {"name": "Business", "price": 19, "period": "monthly", "limits": "Team features"},
+          {"name": "Enterprise", "price": 39, "period": "monthly", "limits": "SSO, custom retention"}
+        ]
+      },
+      "useCases": ["Meeting notes", "CRM updates", "Action items", "Coaching"],
+      "overlaps": ["otter-ai", "grain", "gong"],
+      "roiIndicators": {
+        "timesSaved": "1 hour/day on meeting admin",
+        "costReduction": "Replace manual note-taking",
+        "productivityGain": "Auto CRM updates"
+      },
+      "integrations": ["Zoom", "Meet", "Teams", "Salesforce", "HubSpot"],
+      "strengths": ["CRM integration", "Action items", "Good accuracy"],
+      "weaknesses": ["Bot joins meetings"]
+    },
+    {
+      "id": "zapier",
+      "name": "Zapier",
+      "vendor": "Zapier",
+      "category": "Automation",
+      "description": "No-code automation platform connecting 6,000+ apps",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "100 tasks/month, 5 Zaps"},
+          {"name": "Starter", "price": 20, "period": "monthly", "limits": "750 tasks/month"},
+          {"name": "Professional", "price": 49, "period": "monthly", "limits": "2,000 tasks/month"},
+          {"name": "Team", "price": 69, "period": "monthly", "limits": "Shared workspaces"},
+          {"name": "Company", "price": 99, "period": "monthly", "limits": "Advanced admin"}
+        ]
+      },
+      "useCases": ["App integration", "Lead routing", "Data sync", "Notifications", "Workflows"],
+      "overlaps": ["make", "n8n", "power-automate"],
+      "roiIndicators": {
+        "timesSaved": "10+ hours/week on manual tasks",
+        "costReduction": "vs custom integrations",
+        "productivityGain": "Automate entire workflows"
+      },
+      "integrations": ["6,000+ apps"],
+      "strengths": ["Largest app library", "Easy to use", "Reliable"],
+      "weaknesses": ["Gets expensive at scale"]
+    },
+    {
+      "id": "make",
+      "name": "Make (Integromat)",
+      "vendor": "Make",
+      "category": "Automation",
+      "description": "Visual automation platform with complex workflow capabilities",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "1,000 ops/month"},
+          {"name": "Core", "price": 9, "period": "monthly", "limits": "10,000 ops/month"},
+          {"name": "Pro", "price": 16, "period": "monthly", "limits": "10,000 ops/month + advanced"},
+          {"name": "Teams", "price": 29, "period": "monthly", "limits": "Team features"},
+          {"name": "Enterprise", "price": "custom", "limits": "Dedicated support"}
+        ]
+      },
+      "useCases": ["Complex automations", "Data transformation", "API workflows", "Multi-step processes"],
+      "overlaps": ["zapier", "n8n", "power-automate"],
+      "roiIndicators": {
+        "timesSaved": "15+ hours/week",
+        "costReduction": "More affordable than Zapier",
+        "productivityGain": "Handle complex logic"
+      },
+      "integrations": ["1,000+ apps"],
+      "strengths": ["Visual builder", "Complex logic", "Better pricing"],
+      "weaknesses": ["Steeper learning curve"]
+    },
+    {
+      "id": "n8n",
+      "name": "n8n",
+      "vendor": "n8n",
+      "category": "Automation",
+      "description": "Open-source workflow automation with code flexibility",
+      "pricing": {
+        "tiers": [
+          {"name": "Self-hosted", "price": 0, "limits": "Unlimited"},
+          {"name": "Starter", "price": 20, "period": "monthly", "limits": "2,500 executions"},
+          {"name": "Pro", "price": 50, "period": "monthly", "limits": "10,000 executions"},
+          {"name": "Enterprise", "price": "custom", "limits": "Unlimited, SSO"}
+        ]
+      },
+      "useCases": ["Technical workflows", "AI automations", "Self-hosted needs", "Custom integrations"],
+      "overlaps": ["zapier", "make", "airflow"],
+      "roiIndicators": {
+        "timesSaved": "Unlimited free if self-hosted",
+        "costReduction": "No per-task pricing",
+        "productivityGain": "Full code access"
+      },
+      "integrations": ["400+ nodes", "Custom code"],
+      "strengths": ["Open source", "Code flexibility", "Self-hostable"],
+      "weaknesses": ["Requires technical setup"]
+    },
+    {
+      "id": "bardeen",
+      "name": "Bardeen",
+      "vendor": "Bardeen AI",
+      "category": "Automation",
+      "description": "AI-powered browser automation and scraping tool",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Unlimited non-premium"},
+          {"name": "Professional", "price": 10, "period": "monthly", "limits": "500 credits"},
+          {"name": "Business", "price": 15, "period": "monthly/user", "limits": "Team features"}
+        ]
+      },
+      "useCases": ["Web scraping", "Lead generation", "Data entry", "Browser automation"],
+      "overlaps": ["zapier", "browse-ai", "clay"],
+      "roiIndicators": {
+        "timesSaved": "5+ hours/week on data tasks",
+        "costReduction": "vs manual research",
+        "productivityGain": "Automate browser tasks"
+      },
+      "integrations": ["Chrome extension", "Most web apps"],
+      "strengths": ["Browser-native", "Scraping", "AI suggestions"],
+      "weaknesses": ["Limited to browser"]
+    },
+    {
+      "id": "clay",
+      "name": "Clay",
+      "vendor": "Clay",
+      "category": "Automation",
+      "description": "AI data enrichment and outreach automation platform",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "100 credits/month"},
+          {"name": "Starter", "price": 134, "period": "monthly", "limits": "2,000 credits/month"},
+          {"name": "Explorer", "price": 314, "period": "monthly", "limits": "10,000 credits/month"},
+          {"name": "Pro", "price": 720, "period": "monthly", "limits": "50,000 credits/month"}
+        ]
+      },
+      "useCases": ["Lead enrichment", "Personalized outreach", "Data cleaning", "GTM workflows"],
+      "overlaps": ["apollo", "zoominfo", "bardeen"],
+      "roiIndicators": {
+        "timesSaved": "20+ hours/week on research",
+        "costReduction": "Replace multiple data tools",
+        "productivityGain": "10x personalized outreach"
+      },
+      "integrations": ["50+ data providers", "CRMs", "Email tools"],
+      "strengths": ["Waterfall enrichment", "AI research", "Powerful"],
+      "weaknesses": ["Expensive", "Complex"]
+    },
+    {
+      "id": "chatbase",
+      "name": "Chatbase",
+      "vendor": "Chatbase",
+      "category": "Customer Support",
+      "description": "Custom AI chatbots trained on your data",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "20 messages/month"},
+          {"name": "Hobby", "price": 19, "period": "monthly", "limits": "2,000 messages/month"},
+          {"name": "Standard", "price": 99, "period": "monthly", "limits": "10,000 messages/month"},
+          {"name": "Unlimited", "price": 399, "period": "monthly", "limits": "40,000 messages/month"}
+        ]
+      },
+      "useCases": ["Website chatbot", "Customer support", "Lead capture", "FAQ automation"],
+      "overlaps": ["intercom-fin", "tidio", "drift"],
+      "roiIndicators": {
+        "timesSaved": "80% of support queries automated",
+        "costReduction": "Reduce support tickets",
+        "productivityGain": "24/7 instant responses"
+      },
+      "integrations": ["Website embed", "Slack", "WhatsApp", "API"],
+      "strengths": ["Easy setup", "Custom training", "Multiple models"],
+      "weaknesses": ["Message limits"]
+    },
+    {
+      "id": "intercom-fin",
+      "name": "Intercom Fin",
+      "vendor": "Intercom",
+      "category": "Customer Support",
+      "description": "AI customer service agent with human-like conversations",
+      "pricing": {
+        "tiers": [
+          {"name": "Add-on", "price": 0.99, "period": "per resolution", "limits": "Pay per successful resolution"}
+        ]
+      },
+      "useCases": ["Customer support", "Ticket deflection", "24/7 service", "Multilingual support"],
+      "overlaps": ["zendesk-ai", "chatbase", "ada"],
+      "roiIndicators": {
+        "timesSaved": "50% resolution rate",
+        "costReduction": "$5-20 saved per deflected ticket",
+        "productivityGain": "Scale support without hiring"
+      },
+      "integrations": ["Intercom platform"],
+      "strengths": ["High resolution rate", "Natural conversations", "Intercom integration"],
+      "weaknesses": ["Requires Intercom"]
+    },
+    {
+      "id": "zendesk-ai",
+      "name": "Zendesk AI",
+      "vendor": "Zendesk",
+      "category": "Customer Support",
+      "description": "AI-powered support automation within Zendesk",
+      "pricing": {
+        "tiers": [
+          {"name": "Add-on", "price": 50, "period": "monthly/agent", "limits": "Advanced AI features"}
+        ]
+      },
+      "useCases": ["Ticket routing", "Response suggestions", "Knowledge base", "Sentiment analysis"],
+      "overlaps": ["intercom-fin", "freshdesk-ai", "salesforce-einstein"],
+      "roiIndicators": {
+        "timesSaved": "30% faster resolution",
+        "costReduction": "Reduce agent workload",
+        "productivityGain": "Smarter routing"
+      },
+      "integrations": ["Zendesk Suite"],
+      "strengths": ["Native Zendesk", "Enterprise ready", "Comprehensive"],
+      "weaknesses": ["Requires Zendesk"]
+    },
+    {
+      "id": "tidio",
+      "name": "Tidio",
+      "vendor": "Tidio",
+      "category": "Customer Support",
+      "description": "AI chatbot and live chat for e-commerce and small business",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "50 conversations/month"},
+          {"name": "Starter", "price": 29, "period": "monthly", "limits": "100 conversations"},
+          {"name": "Growth", "price": 59, "period": "monthly", "limits": "Up to 2,000 conversations"},
+          {"name": "Tidio+", "price": 749, "period": "monthly", "limits": "Unlimited, custom"}
+        ]
+      },
+      "useCases": ["E-commerce support", "Lead capture", "Cart recovery", "Live chat"],
+      "overlaps": ["chatbase", "drift", "crisp"],
+      "roiIndicators": {
+        "timesSaved": "50% of queries automated",
+        "costReduction": "Affordable for SMB",
+        "productivityGain": "Boost conversions"
+      },
+      "integrations": ["Shopify", "WordPress", "Email platforms"],
+      "strengths": ["E-commerce focus", "Easy setup", "Good free tier"],
+      "weaknesses": ["Less AI-advanced"]
+    },
+    {
+      "id": "tableau-ai",
+      "name": "Tableau AI",
+      "vendor": "Salesforce",
+      "category": "Data/Analytics",
+      "description": "AI-powered analytics and visualization in Tableau",
+      "pricing": {
+        "tiers": [
+          {"name": "Viewer", "price": 15, "period": "monthly/user", "limits": "View dashboards"},
+          {"name": "Explorer", "price": 42, "period": "monthly/user", "limits": "Create dashboards"},
+          {"name": "Creator", "price": 75, "period": "monthly/user", "limits": "Full capabilities"}
+        ]
+      },
+      "useCases": ["Data visualization", "Natural language queries", "Predictive analytics", "Insights"],
+      "overlaps": ["power-bi", "looker", "thoughtspot"],
+      "roiIndicators": {
+        "timesSaved": "50% faster insights",
+        "costReduction": "vs analyst time",
+        "productivityGain": "Self-service analytics"
+      },
+      "integrations": ["Salesforce", "Data warehouses", "Cloud platforms"],
+      "strengths": ["Best visualizations", "Ask Data feature", "Trusted"],
+      "weaknesses": ["Expensive", "Learning curve"]
+    },
+    {
+      "id": "julius-ai",
+      "name": "Julius AI",
+      "vendor": "Julius",
+      "category": "Data/Analytics",
+      "description": "AI data analyst that interprets and visualizes your data",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "15 messages/month"},
+          {"name": "Essential", "price": 20, "period": "monthly", "limits": "250 messages/month"},
+          {"name": "Pro", "price": 50, "period": "monthly", "limits": "750 messages/month"},
+          {"name": "Enterprise", "price": "custom", "limits": "Unlimited"}
+        ]
+      },
+      "useCases": ["Data analysis", "Visualization", "Report generation", "Statistical analysis"],
+      "overlaps": ["chatgpt-data-analysis", "pandas-ai"],
+      "roiIndicators": {
+        "timesSaved": "Hours on data analysis",
+        "costReduction": "No coding needed",
+        "productivityGain": "Anyone can analyze data"
+      },
+      "integrations": ["CSV/Excel upload", "API"],
+      "strengths": ["Natural language", "No code", "Visual outputs"],
+      "weaknesses": ["Message limits"]
+    },
+    {
+      "id": "speechify",
+      "name": "Speechify",
+      "vendor": "Speechify",
+      "category": "Voice/Audio",
+      "description": "Text-to-speech app for reading anything aloud",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Basic voices"},
+          {"name": "Premium", "price": 139, "period": "yearly", "limits": "30+ voices, OCR"}
+        ]
+      },
+      "useCases": ["Reading documents", "Accessibility", "Learning", "Audiobooks from text"],
+      "overlaps": ["naturalreader", "elevenlabs"],
+      "roiIndicators": {
+        "timesSaved": "2x reading speed",
+        "costReduction": "vs audiobook purchases",
+        "productivityGain": "Multitask while reading"
+      },
+      "integrations": ["Browser", "iOS", "Android", "Chrome extension"],
+      "strengths": ["Consumer-friendly", "Mobile apps", "OCR"],
+      "weaknesses": ["Limited voice cloning"]
+    },
+    {
+      "id": "beautiful-ai",
+      "name": "Beautiful.ai",
+      "vendor": "Beautiful.ai",
+      "category": "Design",
+      "description": "AI presentation maker with smart formatting",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Watermark, limited exports"},
+          {"name": "Pro", "price": 12, "period": "monthly", "limits": "Full features"},
+          {"name": "Team", "price": 40, "period": "monthly/user", "limits": "Collaboration, brand kit"}
+        ]
+      },
+      "useCases": ["Presentations", "Pitch decks", "Reports", "Proposals"],
+      "overlaps": ["canva", "gamma", "tome"],
+      "roiIndicators": {
+        "timesSaved": "50% faster presentations",
+        "costReduction": "vs design agency",
+        "productivityGain": "Auto-formatting"
+      },
+      "integrations": ["PowerPoint export", "Google Slides"],
+      "strengths": ["Smart formatting", "Professional templates", "Easy"],
+      "weaknesses": ["Less flexible than PowerPoint"]
+    },
+    {
+      "id": "gamma",
+      "name": "Gamma",
+      "vendor": "Gamma",
+      "category": "Design",
+      "description": "AI-powered presentation and document creator",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "400 AI credits"},
+          {"name": "Plus", "price": 10, "period": "monthly", "limits": "Unlimited AI, no watermark"},
+          {"name": "Pro", "price": 20, "period": "monthly", "limits": "Advanced features"}
+        ]
+      },
+      "useCases": ["Presentations", "Documents", "Web pages", "Decks"],
+      "overlaps": ["beautiful-ai", "tome", "canva"],
+      "roiIndicators": {
+        "timesSaved": "Create decks in minutes",
+        "costReduction": "Affordable pricing",
+        "productivityGain": "From outline to presentation"
+      },
+      "integrations": ["Web embed", "PDF export"],
+      "strengths": ["AI generation", "Modern design", "Interactive"],
+      "weaknesses": ["Limited offline"]
+    },
+    {
+      "id": "tome",
+      "name": "Tome",
+      "vendor": "Tome",
+      "category": "Design",
+      "description": "AI storytelling and presentation platform",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "500 AI credits"},
+          {"name": "Professional", "price": 16, "period": "monthly", "limits": "Unlimited AI"}
+        ]
+      },
+      "useCases": ["Storytelling", "Presentations", "Proposals", "Creative decks"],
+      "overlaps": ["gamma", "beautiful-ai", "mmhmm"],
+      "roiIndicators": {
+        "timesSaved": "Fast narrative creation",
+        "costReduction": "Replace multiple tools",
+        "productivityGain": "AI-assisted storytelling"
+      },
+      "integrations": ["Figma", "Framer", "Web embed"],
+      "strengths": ["Unique format", "AI generation", "Engaging"],
+      "weaknesses": ["Less traditional"]
+    },
+    {
+      "id": "figma-ai",
+      "name": "Figma AI",
+      "vendor": "Figma",
+      "category": "Design",
+      "description": "AI features in Figma for design assistance",
+      "pricing": {
+        "tiers": [
+          {"name": "Included", "price": 0, "limits": "With Figma subscription"}
+        ]
+      },
+      "useCases": ["Design generation", "Layer renaming", "Asset search", "Design suggestions"],
+      "overlaps": ["framer-ai", "uizard"],
+      "roiIndicators": {
+        "timesSaved": "Faster design tasks",
+        "costReduction": "Included with Figma",
+        "productivityGain": "Streamlined workflow"
+      },
+      "integrations": ["Native Figma"],
+      "strengths": ["Native integration", "No extra cost", "Familiar"],
+      "weaknesses": ["Early features"]
+    },
+    {
+      "id": "framer-ai",
+      "name": "Framer AI",
+      "vendor": "Framer",
+      "category": "Design",
+      "description": "AI website builder that generates sites from prompts",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Framer subdomain"},
+          {"name": "Mini", "price": 5, "period": "monthly", "limits": "Custom domain"},
+          {"name": "Basic", "price": 15, "period": "monthly", "limits": "More pages, analytics"},
+          {"name": "Pro", "price": 30, "period": "monthly", "limits": "CMS, advanced features"}
+        ]
+      },
+      "useCases": ["Landing pages", "Portfolios", "Marketing sites", "Prototypes"],
+      "overlaps": ["webflow", "wix-ai", "durable"],
+      "roiIndicators": {
+        "timesSaved": "Build sites in minutes",
+        "costReduction": "vs developer costs",
+        "productivityGain": "Prompt to website"
+      },
+      "integrations": ["Custom code", "CMS"],
+      "strengths": ["Fast generation", "Beautiful results", "No-code editing"],
+      "weaknesses": ["Limited for complex sites"]
+    },
+    {
+      "id": "uizard",
+      "name": "Uizard",
+      "vendor": "Uizard",
+      "category": "Design",
+      "description": "AI UI design tool for creating mockups and wireframes",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "2 projects"},
+          {"name": "Pro", "price": 12, "period": "monthly", "limits": "Unlimited projects"},
+          {"name": "Business", "price": 39, "period": "monthly", "limits": "Team features"}
+        ]
+      },
+      "useCases": ["Wireframes", "Mockups", "App design", "Prototyping"],
+      "overlaps": ["figma", "sketch", "miro"],
+      "roiIndicators": {
+        "timesSaved": "Hours on mockups",
+        "costReduction": "Faster iteration",
+        "productivityGain": "Screenshot to design"
+      },
+      "integrations": ["Sketch import", "Figma export"],
+      "strengths": ["Scan to design", "Easy for non-designers", "Templates"],
+      "weaknesses": ["Less powerful than Figma"]
+    },
+    {
+      "id": "photoshop-ai",
+      "name": "Photoshop (Generative Fill)",
+      "vendor": "Adobe",
+      "category": "Image Generation",
+      "description": "AI-powered image editing features in Photoshop",
+      "pricing": {
+        "tiers": [
+          {"name": "Photography", "price": 10, "period": "monthly", "limits": "Photoshop + Lightroom"},
+          {"name": "Single App", "price": 23, "period": "monthly", "limits": "Photoshop only"}
+        ]
+      },
+      "useCases": ["Photo editing", "Object removal", "Background replacement", "Image expansion"],
+      "overlaps": ["adobe-firefly", "canva-ai", "luminar-neo"],
+      "roiIndicators": {
+        "timesSaved": "10x faster edits",
+        "costReduction": "No additional tools",
+        "productivityGain": "Complex edits simplified"
+      },
+      "integrations": ["Creative Cloud"],
+      "strengths": ["Professional quality", "Seamless integration", "Powerful"],
+      "weaknesses": ["Subscription required"]
+    },
+    {
+      "id": "remove-bg",
+      "name": "Remove.bg",
+      "vendor": "Kaleido AI",
+      "category": "Image Generation",
+      "description": "AI background removal tool",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "1 free HD/month, preview quality"},
+          {"name": "Credits", "price": 9, "period": "40 credits", "limits": "Pay per image"},
+          {"name": "Subscription", "price": 9, "period": "monthly", "limits": "40 credits/month"}
+        ]
+      },
+      "useCases": ["E-commerce photos", "Profile pictures", "Marketing images"],
+      "overlaps": ["canva-ai", "photoshop-ai"],
+      "roiIndicators": {
+        "timesSaved": "Seconds vs minutes",
+        "costReduction": "vs manual editing",
+        "productivityGain": "Batch processing"
+      },
+      "integrations": ["API", "Photoshop plugin", "Zapier"],
+      "strengths": ["One-click", "High quality", "API"],
+      "weaknesses": ["Credit-based"]
+    },
+    {
+      "id": "luma-ai",
+      "name": "Luma AI",
+      "vendor": "Luma AI",
+      "category": "Video",
+      "description": "AI for 3D capture and video generation",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Basic features"},
+          {"name": "Pro", "price": 30, "period": "monthly", "limits": "Advanced features"}
+        ]
+      },
+      "useCases": ["3D scanning", "Video generation", "Product visualization"],
+      "overlaps": ["runway", "pika", "polycam"],
+      "roiIndicators": {
+        "timesSaved": "Fast 3D capture",
+        "costReduction": "vs 3D modeling",
+        "productivityGain": "Phone-based 3D"
+      },
+      "integrations": ["iOS app", "Web"],
+      "strengths": ["Great 3D quality", "Dream Machine video", "Easy"],
+      "weaknesses": ["Newer platform"]
+    },
+    {
+      "id": "invideo-ai",
+      "name": "InVideo AI",
+      "vendor": "InVideo",
+      "category": "Video",
+      "description": "AI video creator for text-to-video generation",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "10 mins AI/week"},
+          {"name": "Plus", "price": 25, "period": "monthly", "limits": "50 mins AI/month"},
+          {"name": "Max", "price": 60, "period": "monthly", "limits": "200 mins AI/month"}
+        ]
+      },
+      "useCases": ["YouTube videos", "Social content", "Marketing videos", "Explainers"],
+      "overlaps": ["pictory", "synthesia", "lumen5"],
+      "roiIndicators": {
+        "timesSaved": "Minutes to create videos",
+        "costReduction": "No video editing skills needed",
+        "productivityGain": "Idea to video with prompt"
+      },
+      "integrations": ["Stock libraries", "Direct publish"],
+      "strengths": ["Full video from prompt", "Stock footage", "Easy"],
+      "weaknesses": ["Limited customization"]
+    },
+    {
+      "id": "pictory",
+      "name": "Pictory",
+      "vendor": "Pictory",
+      "category": "Video",
+      "description": "AI video creation from text, articles, and scripts",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "3 video projects"},
+          {"name": "Starter", "price": 19, "period": "monthly", "limits": "30 videos/month"},
+          {"name": "Professional", "price": 39, "period": "monthly", "limits": "60 videos/month"},
+          {"name": "Teams", "price": 99, "period": "monthly", "limits": "90 videos/month"}
+        ]
+      },
+      "useCases": ["Blog to video", "Script to video", "Video highlights", "Social clips"],
+      "overlaps": ["invideo-ai", "lumen5", "synthesia"],
+      "roiIndicators": {
+        "timesSaved": "5x faster video creation",
+        "costReduction": "vs video editors",
+        "productivityGain": "Repurpose content"
+      },
+      "integrations": ["WordPress", "Stock libraries"],
+      "strengths": ["Blog to video", "Auto-visuals", "Easy"],
+      "weaknesses": ["Less creative control"]
+    },
+    {
+      "id": "kapwing",
+      "name": "Kapwing",
+      "vendor": "Kapwing",
+      "category": "Video",
+      "description": "Online video editor with AI features",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Watermark, 4 min export"},
+          {"name": "Pro", "price": 16, "period": "monthly", "limits": "Full features"},
+          {"name": "Business", "price": 50, "period": "monthly/user", "limits": "Team features"}
+        ]
+      },
+      "useCases": ["Video editing", "Subtitles", "Repurposing", "Memes"],
+      "overlaps": ["canva", "descript", "capcut"],
+      "roiIndicators": {
+        "timesSaved": "Browser-based editing",
+        "costReduction": "No software install",
+        "productivityGain": "Quick edits"
+      },
+      "integrations": ["Browser-based"],
+      "strengths": ["Browser-based", "AI subtitles", "Easy"],
+      "weaknesses": ["Less powerful than desktop"]
+    },
+    {
+      "id": "capcut",
+      "name": "CapCut",
+      "vendor": "ByteDance",
+      "category": "Video",
+      "description": "Free video editor with AI features",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Most features"},
+          {"name": "Pro", "price": 8, "period": "monthly", "limits": "Premium effects, no watermark"}
+        ]
+      },
+      "useCases": ["Social video editing", "TikTok content", "Reels", "Shorts"],
+      "overlaps": ["premiere-pro", "davinci-resolve", "kapwing"],
+      "roiIndicators": {
+        "timesSaved": "Quick mobile editing",
+        "costReduction": "Free for most needs",
+        "productivityGain": "TikTok-optimized"
+      },
+      "integrations": ["TikTok", "Mobile apps"],
+      "strengths": ["Free", "Trendy effects", "Easy"],
+      "weaknesses": ["Less professional"]
+    },
+    {
+      "id": "scale-ai",
+      "name": "Scale AI",
+      "vendor": "Scale",
+      "category": "Data/Analytics",
+      "description": "Data labeling and AI training data platform",
+      "pricing": {
+        "tiers": [
+          {"name": "Enterprise", "price": "custom", "limits": "Contact sales"}
+        ]
+      },
+      "useCases": ["Data labeling", "Model training", "Autonomous vehicles", "ML pipelines"],
+      "overlaps": ["labelbox", "snorkel"],
+      "roiIndicators": {
+        "timesSaved": "10x faster labeling",
+        "costReduction": "vs in-house labeling",
+        "productivityGain": "Quality training data"
+      },
+      "integrations": ["ML platforms", "Cloud providers"],
+      "strengths": ["Quality", "Scale", "Enterprise"],
+      "weaknesses": ["Expensive", "Enterprise only"]
+    },
+    {
+      "id": "huggingface",
+      "name": "Hugging Face",
+      "vendor": "Hugging Face",
+      "category": "LLM/Chat AI",
+      "description": "AI model hub and deployment platform",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Public models, limited inference"},
+          {"name": "Pro", "price": 9, "period": "monthly", "limits": "Private models, more compute"},
+          {"name": "Enterprise", "price": "custom", "limits": "Dedicated, SSO"}
+        ]
+      },
+      "useCases": ["Model hosting", "Fine-tuning", "Inference API", "Model discovery"],
+      "overlaps": ["replicate", "aws-bedrock"],
+      "roiIndicators": {
+        "timesSaved": "Fast model deployment",
+        "costReduction": "vs building from scratch",
+        "productivityGain": "Community models"
+      },
+      "integrations": ["All ML frameworks"],
+      "strengths": ["Largest model hub", "Open source community", "Easy deployment"],
+      "weaknesses": ["Can get complex"]
+    },
+    {
+      "id": "replicate",
+      "name": "Replicate",
+      "vendor": "Replicate",
+      "category": "LLM/Chat AI",
+      "description": "Run open-source models via simple API",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Some free models"},
+          {"name": "Usage", "price": "varies", "period": "per second", "limits": "Pay per compute time"}
+        ]
+      },
+      "useCases": ["Model inference", "Prototyping", "Running open-source models"],
+      "overlaps": ["huggingface", "runpod", "modal"],
+      "roiIndicators": {
+        "timesSaved": "No infrastructure management",
+        "costReduction": "Pay per use",
+        "productivityGain": "Simple API"
+      },
+      "integrations": ["API", "Python SDK"],
+      "strengths": ["Simple API", "Many models", "Pay per use"],
+      "weaknesses": ["Can be expensive at scale"]
+    },
+    {
+      "id": "llama",
+      "name": "Llama 3",
+      "vendor": "Meta",
+      "category": "LLM/Chat AI",
+      "description": "Meta's open-source large language model",
+      "pricing": {
+        "tiers": [
+          {"name": "Open Source", "price": 0, "limits": "Free to use and modify"}
+        ]
+      },
+      "useCases": ["Self-hosted AI", "Fine-tuning", "Custom applications", "Research"],
+      "overlaps": ["mistral", "claude", "chatgpt"],
+      "roiIndicators": {
+        "timesSaved": "Full control",
+        "costReduction": "No API costs if self-hosted",
+        "productivityGain": "Customizable"
+      },
+      "integrations": ["All ML frameworks", "Ollama"],
+      "strengths": ["Open source", "Strong performance", "Customizable"],
+      "weaknesses": ["Requires infrastructure"]
+    },
+    {
+      "id": "mistral",
+      "name": "Mistral AI",
+      "vendor": "Mistral AI",
+      "category": "LLM/Chat AI",
+      "description": "European open-weight AI models",
+      "pricing": {
+        "tiers": [
+          {"name": "Open Models", "price": 0, "limits": "Free to use"},
+          {"name": "API", "price": "usage-based", "limits": "Pay per token"}
+        ]
+      },
+      "useCases": ["Code generation", "Reasoning", "Multilingual tasks", "Self-hosting"],
+      "overlaps": ["llama", "claude", "chatgpt"],
+      "roiIndicators": {
+        "timesSaved": "Strong at efficiency",
+        "costReduction": "Competitive pricing",
+        "productivityGain": "Good performance/cost ratio"
+      },
+      "integrations": ["API", "Cloud providers"],
+      "strengths": ["Open weights", "Efficient", "European"],
+      "weaknesses": ["Smaller ecosystem"]
+    },
+    {
+      "id": "cohere",
+      "name": "Cohere",
+      "vendor": "Cohere",
+      "category": "LLM/Chat AI",
+      "description": "Enterprise-focused NLP and LLM platform",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Rate limited"},
+          {"name": "Production", "price": "usage-based", "limits": "Pay per token"},
+          {"name": "Enterprise", "price": "custom", "limits": "Dedicated, fine-tuning"}
+        ]
+      },
+      "useCases": ["Enterprise NLP", "Semantic search", "RAG applications", "Text generation"],
+      "overlaps": ["openai", "anthropic"],
+      "roiIndicators": {
+        "timesSaved": "Enterprise-ready",
+        "costReduction": "Competitive pricing",
+        "productivityGain": "Specialized embeddings"
+      },
+      "integrations": ["Cloud providers", "LangChain"],
+      "strengths": ["Enterprise focus", "Great embeddings", "RAG-optimized"],
+      "weaknesses": ["Less consumer-facing"]
+    },
+    {
+      "id": "openai-api",
+      "name": "OpenAI API",
+      "vendor": "OpenAI",
+      "category": "LLM/Chat AI",
+      "description": "API access to GPT-4, DALL-E, Whisper, and more",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "$5 credit for new users"},
+          {"name": "Pay-as-you-go", "price": "varies", "limits": "Per 1K tokens"}
+        ]
+      },
+      "useCases": ["App development", "Chatbots", "Content generation", "Code", "Audio"],
+      "overlaps": ["anthropic-api", "google-ai-api"],
+      "roiIndicators": {
+        "timesSaved": "Build AI apps fast",
+        "costReduction": "Pay only what you use",
+        "productivityGain": "Access to best models"
+      },
+      "integrations": ["REST API", "Python SDK", "All languages"],
+      "strengths": ["Best models", "Comprehensive", "Reliable"],
+      "weaknesses": ["Can get expensive at scale"]
+    },
+    {
+      "id": "anthropic-api",
+      "name": "Anthropic API",
+      "vendor": "Anthropic",
+      "category": "LLM/Chat AI",
+      "description": "API access to Claude models",
+      "pricing": {
+        "tiers": [
+          {"name": "Pay-as-you-go", "price": "varies", "limits": "Per 1K tokens"}
+        ]
+      },
+      "useCases": ["Long document processing", "Coding", "Analysis", "Safe AI applications"],
+      "overlaps": ["openai-api", "google-ai-api"],
+      "roiIndicators": {
+        "timesSaved": "200K context window",
+        "costReduction": "Competitive pricing",
+        "productivityGain": "Strong reasoning"
+      },
+      "integrations": ["REST API", "Python SDK", "AWS Bedrock"],
+      "strengths": ["Long context", "Safety", "Reasoning"],
+      "weaknesses": ["Fewer model options"]
+    },
+    {
+      "id": "gong",
+      "name": "Gong",
+      "vendor": "Gong",
+      "category": "Marketing",
+      "description": "AI revenue intelligence platform",
+      "pricing": {
+        "tiers": [
+          {"name": "Enterprise", "price": "custom", "limits": "Contact sales"}
+        ]
+      },
+      "useCases": ["Sales call analysis", "Deal intelligence", "Coaching", "Forecasting"],
+      "overlaps": ["chorus", "fireflies", "clari"],
+      "roiIndicators": {
+        "timesSaved": "Hours on call review",
+        "costReduction": "Improve win rates",
+        "productivityGain": "AI insights on every call"
+      },
+      "integrations": ["Salesforce", "HubSpot", "Zoom", "Teams"],
+      "strengths": ["Deep insights", "Coaching", "Forecasting"],
+      "weaknesses": ["Expensive"]
+    },
+    {
+      "id": "surfer-seo",
+      "name": "Surfer SEO",
+      "vendor": "Surfer",
+      "category": "Marketing",
+      "description": "AI SEO optimization and content planning",
+      "pricing": {
+        "tiers": [
+          {"name": "Essential", "price": 89, "period": "monthly", "limits": "30 articles/month"},
+          {"name": "Scale", "price": 129, "period": "monthly", "limits": "100 articles/month"},
+          {"name": "Scale AI", "price": 219, "period": "monthly", "limits": "100 articles + AI writing"},
+          {"name": "Enterprise", "price": "custom", "limits": "Custom limits"}
+        ]
+      },
+      "useCases": ["Content optimization", "Keyword research", "Content planning", "SERP analysis"],
+      "overlaps": ["clearscope", "frase", "semrush"],
+      "roiIndicators": {
+        "timesSaved": "Hours on SEO research",
+        "costReduction": "vs SEO agencies",
+        "productivityGain": "Data-driven content"
+      },
+      "integrations": ["Google Docs", "WordPress", "Jasper"],
+      "strengths": ["Real-time optimization", "Content editor", "SERP analysis"],
+      "weaknesses": ["Learning curve"]
+    },
+    {
+      "id": "semrush-ai",
+      "name": "Semrush",
+      "vendor": "Semrush",
+      "category": "Marketing",
+      "description": "SEO and marketing platform with AI features",
+      "pricing": {
+        "tiers": [
+          {"name": "Pro", "price": 130, "period": "monthly", "limits": "5 projects"},
+          {"name": "Guru", "price": 250, "period": "monthly", "limits": "15 projects"},
+          {"name": "Business", "price": 500, "period": "monthly", "limits": "40 projects"}
+        ]
+      },
+      "useCases": ["SEO analysis", "Competitive research", "PPC", "Content marketing"],
+      "overlaps": ["ahrefs", "moz", "surfer-seo"],
+      "roiIndicators": {
+        "timesSaved": "All-in-one platform",
+        "costReduction": "Replace multiple tools",
+        "productivityGain": "Comprehensive insights"
+      },
+      "integrations": ["Google Analytics", "Search Console", "Social platforms"],
+      "strengths": ["Comprehensive", "Competitive analysis", "Trusted"],
+      "weaknesses": ["Expensive", "Complex"]
+    },
+    {
+      "id": "hubspot-ai",
+      "name": "HubSpot AI",
+      "vendor": "HubSpot",
+      "category": "Marketing",
+      "description": "AI features across HubSpot CRM and marketing",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Basic AI features"},
+          {"name": "Starter", "price": 20, "period": "monthly", "limits": "Essential features"},
+          {"name": "Professional", "price": 890, "period": "monthly", "limits": "Full automation"},
+          {"name": "Enterprise", "price": 3600, "period": "monthly", "limits": "Advanced"}
+        ]
+      },
+      "useCases": ["Email writing", "Content generation", "Lead scoring", "Chatbots"],
+      "overlaps": ["salesforce-einstein", "marketo"],
+      "roiIndicators": {
+        "timesSaved": "Hours on content creation",
+        "costReduction": "Integrated = no extra tools",
+        "productivityGain": "AI across CRM"
+      },
+      "integrations": ["Native HubSpot"],
+      "strengths": ["Integrated", "Easy to use", "Comprehensive"],
+      "weaknesses": ["Expensive at scale"]
+    },
+    {
+      "id": "mailchimp-ai",
+      "name": "Mailchimp AI",
+      "vendor": "Intuit",
+      "category": "Marketing",
+      "description": "AI-powered email marketing features",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "500 contacts"},
+          {"name": "Essentials", "price": 13, "period": "monthly", "limits": "500 contacts"},
+          {"name": "Standard", "price": 20, "period": "monthly", "limits": "500 contacts, AI features"},
+          {"name": "Premium", "price": 350, "period": "monthly", "limits": "Advanced"}
+        ]
+      },
+      "useCases": ["Email optimization", "Subject lines", "Send time optimization", "Content suggestions"],
+      "overlaps": ["klaviyo", "hubspot", "constant-contact"],
+      "roiIndicators": {
+        "timesSaved": "Faster email creation",
+        "costReduction": "Better open rates",
+        "productivityGain": "AI optimization"
+      },
+      "integrations": ["E-commerce", "CRMs", "Zapier"],
+      "strengths": ["Easy to use", "Good free tier", "AI insights"],
+      "weaknesses": ["Less powerful than enterprise tools"]
+    },
+    {
+      "id": "apolloio",
+      "name": "Apollo.io",
+      "vendor": "Apollo",
+      "category": "Marketing",
+      "description": "AI-powered sales intelligence and engagement",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "600 credits/year"},
+          {"name": "Basic", "price": 49, "period": "monthly", "limits": "Unlimited emails"},
+          {"name": "Professional", "price": 79, "period": "monthly", "limits": "More data"},
+          {"name": "Organization", "price": 119, "period": "monthly/user", "limits": "Advanced"}
+        ]
+      },
+      "useCases": ["Lead generation", "Email sequences", "Data enrichment", "Prospecting"],
+      "overlaps": ["zoominfo", "clay", "outreach"],
+      "roiIndicators": {
+        "timesSaved": "Hours on prospecting",
+        "costReduction": "vs ZoomInfo pricing",
+        "productivityGain": "All-in-one GTM"
+      },
+      "integrations": ["Salesforce", "HubSpot", "LinkedIn"],
+      "strengths": ["Affordable", "Comprehensive", "Good data"],
+      "weaknesses": ["Data accuracy varies"]
+    },
+    {
+      "id": "slack-ai",
+      "name": "Slack AI",
+      "vendor": "Salesforce",
+      "category": "Productivity",
+      "description": "AI features in Slack for search and summaries",
+      "pricing": {
+        "tiers": [
+          {"name": "Add-on", "price": 10, "period": "monthly/user", "limits": "With Pro/Business+ plan"}
+        ]
+      },
+      "useCases": ["Channel summaries", "Thread summaries", "Search answers", "Catch up"],
+      "overlaps": ["teams-copilot", "notion-ai"],
+      "roiIndicators": {
+        "timesSaved": "30 min/day catching up",
+        "costReduction": "vs information overload",
+        "productivityGain": "Instant summaries"
+      },
+      "integrations": ["Native Slack"],
+      "strengths": ["Native integration", "Secure", "Useful summaries"],
+      "weaknesses": ["Requires paid Slack"]
+    },
+    {
+      "id": "microsoft-copilot",
+      "name": "Microsoft Copilot",
+      "vendor": "Microsoft",
+      "category": "Productivity",
+      "description": "AI assistant across Microsoft 365 apps",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Web chat, limited features"},
+          {"name": "Pro", "price": 20, "period": "monthly", "limits": "Priority, GPT-4"},
+          {"name": "Microsoft 365", "price": 30, "period": "monthly/user", "limits": "Full M365 integration"}
+        ]
+      },
+      "useCases": ["Word drafting", "Excel analysis", "PowerPoint creation", "Email", "Teams summaries"],
+      "overlaps": ["gemini", "chatgpt", "notion-ai"],
+      "roiIndicators": {
+        "timesSaved": "2-4 hours/day",
+        "costReduction": "vs separate AI tools",
+        "productivityGain": "AI in every app"
+      },
+      "integrations": ["Microsoft 365", "Teams", "Edge"],
+      "strengths": ["Deep M365 integration", "Enterprise ready", "Comprehensive"],
+      "weaknesses": ["Expensive for full features"]
+    },
+    {
+      "id": "motion",
+      "name": "Motion",
+      "vendor": "Motion",
+      "category": "Productivity",
+      "description": "AI calendar and task management",
+      "pricing": {
+        "tiers": [
+          {"name": "Individual", "price": 19, "period": "monthly", "limits": "Personal use"},
+          {"name": "Team", "price": 12, "period": "monthly/user", "limits": "Team features"}
+        ]
+      },
+      "useCases": ["Auto-scheduling", "Task prioritization", "Calendar optimization", "Project management"],
+      "overlaps": ["reclaim", "clockwise", "todoist"],
+      "roiIndicators": {
+        "timesSaved": "2 hours/day on scheduling",
+        "costReduction": "vs admin time",
+        "productivityGain": "Never miss deadlines"
+      },
+      "integrations": ["Google Calendar", "Outlook", "Zoom"],
+      "strengths": ["Intelligent scheduling", "Task management", "All-in-one"],
+      "weaknesses": ["Learning curve"]
+    },
+    {
+      "id": "reclaim",
+      "name": "Reclaim.ai",
+      "vendor": "Reclaim",
+      "category": "Productivity",
+      "description": "AI scheduling for busy professionals",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "3 habits, basic features"},
+          {"name": "Starter", "price": 8, "period": "monthly", "limits": "More habits, priorities"},
+          {"name": "Business", "price": 12, "period": "monthly/user", "limits": "Team scheduling"},
+          {"name": "Enterprise", "price": 18, "period": "monthly/user", "limits": "Advanced"}
+        ]
+      },
+      "useCases": ["Habit scheduling", "Meeting optimization", "Focus time", "Task scheduling"],
+      "overlaps": ["motion", "clockwise", "calendly"],
+      "roiIndicators": {
+        "timesSaved": "1-2 hours/day",
+        "costReduction": "Better time utilization",
+        "productivityGain": "Protected focus time"
+      },
+      "integrations": ["Google Calendar", "Outlook", "Slack", "Asana"],
+      "strengths": ["Smart habits", "Free tier", "Team sync"],
+      "weaknesses": ["Less task management"]
+    },
+    {
+      "id": "mem-ai",
+      "name": "Mem",
+      "vendor": "Mem",
+      "category": "Productivity",
+      "description": "AI-powered note-taking and knowledge management",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Basic features"},
+          {"name": "Mem", "price": 15, "period": "monthly", "limits": "AI features"},
+          {"name": "Team", "price": 25, "period": "monthly/user", "limits": "Collaboration"}
+        ]
+      },
+      "useCases": ["Note-taking", "Knowledge base", "Meeting notes", "Writing"],
+      "overlaps": ["notion-ai", "obsidian", "roam"],
+      "roiIndicators": {
+        "timesSaved": "Faster note retrieval",
+        "costReduction": "vs lost information",
+        "productivityGain": "AI-organized knowledge"
+      },
+      "integrations": ["Calendar", "Email"],
+      "strengths": ["Auto-organization", "AI search", "Clean UI"],
+      "weaknesses": ["Less structured than Notion"]
+    },
+    {
+      "id": "lex-ai",
+      "name": "Lex",
+      "vendor": "Lex",
+      "category": "Writing/Content",
+      "description": "AI writing tool for long-form content",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Basic features"},
+          {"name": "Premium", "price": 8, "period": "monthly", "limits": "Full AI features"}
+        ]
+      },
+      "useCases": ["Long-form writing", "Essays", "Blog posts", "Books"],
+      "overlaps": ["notion-ai", "jasper", "chatgpt"],
+      "roiIndicators": {
+        "timesSaved": "Faster writing",
+        "costReduction": "Affordable",
+        "productivityGain": "Writer-focused AI"
+      },
+      "integrations": ["Export options"],
+      "strengths": ["Writer-focused", "Clean UI", "Affordable"],
+      "weaknesses": ["Limited features"]
+    },
+    {
+      "id": "rytr",
+      "name": "Rytr",
+      "vendor": "Rytr",
+      "category": "Writing/Content",
+      "description": "Affordable AI writing assistant",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "10K chars/month"},
+          {"name": "Saver", "price": 9, "period": "monthly", "limits": "100K chars/month"},
+          {"name": "Unlimited", "price": 29, "period": "monthly", "limits": "Unlimited"}
+        ]
+      },
+      "useCases": ["Blog posts", "Emails", "Social media", "Ads"],
+      "overlaps": ["jasper", "copy-ai", "writesonic"],
+      "roiIndicators": {
+        "timesSaved": "Hours on writing",
+        "costReduction": "Most affordable option",
+        "productivityGain": "Quick content creation"
+      },
+      "integrations": ["Chrome extension", "API"],
+      "strengths": ["Affordable", "Easy to use", "Multiple use cases"],
+      "weaknesses": ["Less powerful than competitors"]
+    },
+    {
+      "id": "wordtune",
+      "name": "Wordtune",
+      "vendor": "AI21 Labs",
+      "category": "Writing/Content",
+      "description": "AI writing companion for rewriting and tone",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "10 rewrites/day"},
+          {"name": "Plus", "price": 10, "period": "monthly", "limits": "Unlimited rewrites"},
+          {"name": "Business", "price": "custom", "limits": "Team features"}
+        ]
+      },
+      "useCases": ["Rewriting", "Tone adjustment", "Summarization", "Translation"],
+      "overlaps": ["grammarly", "quillbot"],
+      "roiIndicators": {
+        "timesSaved": "Faster editing",
+        "costReduction": "Affordable",
+        "productivityGain": "Better writing quality"
+      },
+      "integrations": ["Chrome", "Word", "Email"],
+      "strengths": ["Good rewrites", "Tone options", "Easy"],
+      "weaknesses": ["Limited generation"]
+    },
+    {
+      "id": "anyword",
+      "name": "Anyword",
+      "vendor": "Anyword",
+      "category": "Writing/Content",
+      "description": "AI copywriting with predictive performance scoring",
+      "pricing": {
+        "tiers": [
+          {"name": "Starter", "price": 49, "period": "monthly", "limits": "20K words/month"},
+          {"name": "Data-Driven", "price": 99, "period": "monthly", "limits": "Predictive scoring"},
+          {"name": "Business", "price": 499, "period": "monthly", "limits": "Team features"},
+          {"name": "Enterprise", "price": "custom", "limits": "Custom"}
+        ]
+      },
+      "useCases": ["Ad copy", "Landing pages", "Email subject lines", "Performance prediction"],
+      "overlaps": ["jasper", "copy-ai", "persado"],
+      "roiIndicators": {
+        "timesSaved": "Faster copy creation",
+        "costReduction": "Better performing ads",
+        "productivityGain": "Predictive insights"
+      },
+      "integrations": ["HubSpot", "Google Ads", "Facebook"],
+      "strengths": ["Performance prediction", "Brand voice", "Ad-focused"],
+      "weaknesses": ["Expensive"]
+    },
+    {
+      "id": "ai-dungeon",
+      "name": "AI Dungeon",
+      "vendor": "Latitude",
+      "category": "Writing/Content",
+      "description": "AI-powered interactive storytelling game",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Basic model"},
+          {"name": "Hero", "price": 10, "period": "monthly", "limits": "Better models"},
+          {"name": "Legend", "price": 30, "period": "monthly", "limits": "Best models, features"}
+        ]
+      },
+      "useCases": ["Creative writing", "Storytelling", "Entertainment", "Brainstorming"],
+      "overlaps": ["novel-ai", "chatgpt"],
+      "roiIndicators": {
+        "timesSaved": "Creative inspiration",
+        "costReduction": "Affordable entertainment",
+        "productivityGain": "Idea generation"
+      },
+      "integrations": ["Web", "Mobile"],
+      "strengths": ["Interactive", "Creative", "Fun"],
+      "weaknesses": ["Entertainment-focused"]
+    },
+    {
+      "id": "sudowrite",
+      "name": "Sudowrite",
+      "vendor": "Sudowrite",
+      "category": "Writing/Content",
+      "description": "AI writing tool for fiction authors",
+      "pricing": {
+        "tiers": [
+          {"name": "Hobby", "price": 10, "period": "monthly", "limits": "30K AI words/month"},
+          {"name": "Professional", "price": 25, "period": "monthly", "limits": "90K AI words/month"},
+          {"name": "Max", "price": 100, "period": "monthly", "limits": "300K AI words/month"}
+        ]
+      },
+      "useCases": ["Fiction writing", "Novel drafting", "Story development", "Character creation"],
+      "overlaps": ["novel-ai", "jasper"],
+      "roiIndicators": {
+        "timesSaved": "Faster drafting",
+        "costReduction": "vs writer's block",
+        "productivityGain": "More creative output"
+      },
+      "integrations": ["Web app"],
+      "strengths": ["Fiction-focused", "Story tools", "Writer community"],
+      "weaknesses": ["Niche use case"]
+    },
+    {
+      "id": "ai21",
+      "name": "AI21 Labs",
+      "vendor": "AI21 Labs",
+      "category": "LLM/Chat AI",
+      "description": "Enterprise-grade language models and APIs",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Trial credits"},
+          {"name": "API", "price": "usage-based", "limits": "Pay per token"}
+        ]
+      },
+      "useCases": ["Enterprise NLP", "Custom applications", "Document processing", "Summarization"],
+      "overlaps": ["openai", "anthropic", "cohere"],
+      "roiIndicators": {
+        "timesSaved": "Specialized models",
+        "costReduction": "Competitive pricing",
+        "productivityGain": "Task-specific AI"
+      },
+      "integrations": ["API", "AWS", "Azure"],
+      "strengths": ["Specialized models", "Enterprise focus", "Summarization"],
+      "weaknesses": ["Less well-known"]
+    },
+    {
+      "id": "character-ai",
+      "name": "Character.AI",
+      "vendor": "Character Technologies",
+      "category": "LLM/Chat AI",
+      "description": "AI chatbot platform with character personas",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Basic access"},
+          {"name": "c.ai+", "price": 10, "period": "monthly", "limits": "Priority, faster responses"}
+        ]
+      },
+      "useCases": ["Entertainment", "Roleplay", "Creative writing", "Language practice"],
+      "overlaps": ["chatgpt", "replika"],
+      "roiIndicators": {
+        "timesSaved": "Entertainment value",
+        "costReduction": "Affordable",
+        "productivityGain": "Creative exploration"
+      },
+      "integrations": ["Web", "Mobile"],
+      "strengths": ["Character creation", "Engaging", "Community"],
+      "weaknesses": ["Entertainment-focused"]
+    },
+    {
+      "id": "you-com",
+      "name": "You.com",
+      "vendor": "You.com",
+      "category": "LLM/Chat AI",
+      "description": "AI search engine with chat capabilities",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Basic search"},
+          {"name": "YouPro", "price": 20, "period": "monthly", "limits": "GPT-4, Claude, unlimited"}
+        ]
+      },
+      "useCases": ["Search", "Research", "Coding", "Writing"],
+      "overlaps": ["perplexity", "chatgpt", "bing"],
+      "roiIndicators": {
+        "timesSaved": "Faster research",
+        "costReduction": "Multiple AI models",
+        "productivityGain": "Privacy-focused"
+      },
+      "integrations": ["Browser extension"],
+      "strengths": ["Privacy", "Multiple models", "App integration"],
+      "weaknesses": ["Smaller user base"]
+    },
+    {
+      "id": "poe",
+      "name": "Poe",
+      "vendor": "Quora",
+      "category": "LLM/Chat AI",
+      "description": "Multi-model AI chat platform",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Limited messages"},
+          {"name": "Subscription", "price": 20, "period": "monthly", "limits": "Unlimited, all models"}
+        ]
+      },
+      "useCases": ["Multi-model access", "Comparison", "Bot creation", "Chat"],
+      "overlaps": ["chatgpt", "claude", "perplexity"],
+      "roiIndicators": {
+        "timesSaved": "One platform, many models",
+        "costReduction": "vs multiple subscriptions",
+        "productivityGain": "Model comparison"
+      },
+      "integrations": ["Web", "Mobile"],
+      "strengths": ["Multiple models", "Bot creation", "Affordable"],
+      "weaknesses": ["Less polished than native apps"]
+    },
+    {
+      "id": "resemble-ai",
+      "name": "Resemble AI",
+      "vendor": "Resemble AI",
+      "category": "Voice/Audio",
+      "description": "AI voice cloning and generation platform",
+      "pricing": {
+        "tiers": [
+          {"name": "Basic", "price": 0.006, "period": "per second", "limits": "Pay as you go"},
+          {"name": "Pro", "price": 99, "period": "monthly", "limits": "Team features"},
+          {"name": "Enterprise", "price": "custom", "limits": "Custom solutions"}
+        ]
+      },
+      "useCases": ["Voice cloning", "Localization", "Gaming", "Podcasts"],
+      "overlaps": ["elevenlabs", "play-ht", "descript"],
+      "roiIndicators": {
+        "timesSaved": "Fast voice generation",
+        "costReduction": "vs voice actors",
+        "productivityGain": "Scale voice content"
+      },
+      "integrations": ["API", "Unity"],
+      "strengths": ["Voice cloning", "Real-time", "API"],
+      "weaknesses": ["Less natural than ElevenLabs"]
+    },
+    {
+      "id": "play-ht",
+      "name": "Play.ht",
+      "vendor": "Play.ht",
+      "category": "Voice/Audio",
+      "description": "AI text-to-speech and voice generation",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "2,500 words"},
+          {"name": "Creator", "price": 31, "period": "monthly", "limits": "Unlimited words"},
+          {"name": "Unlimited", "price": 99, "period": "monthly", "limits": "Commercial license"}
+        ]
+      },
+      "useCases": ["Podcasts", "Videos", "IVR", "E-learning"],
+      "overlaps": ["elevenlabs", "murf", "wellsaid"],
+      "roiIndicators": {
+        "timesSaved": "Instant voiceovers",
+        "costReduction": "vs voice talent",
+        "productivityGain": "Scale audio"
+      },
+      "integrations": ["API", "WordPress"],
+      "strengths": ["Many voices", "Easy to use", "Blog integration"],
+      "weaknesses": ["Quality varies"]
+    },
+    {
+      "id": "adobe-podcast",
+      "name": "Adobe Podcast",
+      "vendor": "Adobe",
+      "category": "Voice/Audio",
+      "description": "AI-powered podcast recording and editing",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Basic features"}
+        ]
+      },
+      "useCases": ["Podcast recording", "Audio cleanup", "Transcription", "Remote recording"],
+      "overlaps": ["descript", "riverside", "cleanvoice"],
+      "roiIndicators": {
+        "timesSaved": "Fast audio cleanup",
+        "costReduction": "Free",
+        "productivityGain": "Studio quality anywhere"
+      },
+      "integrations": ["Browser-based"],
+      "strengths": ["Free", "Enhance Speech AI", "Easy"],
+      "weaknesses": ["Limited features vs paid tools"]
+    },
+    {
+      "id": "soundraw",
+      "name": "Soundraw",
+      "vendor": "Soundraw",
+      "category": "Voice/Audio",
+      "description": "AI music generator for custom tracks",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Create, no download"},
+          {"name": "Creator", "price": 17, "period": "monthly", "limits": "Personal use"},
+          {"name": "Artist", "price": 33, "period": "monthly", "limits": "Commercial use"}
+        ]
+      },
+      "useCases": ["Background music", "YouTube videos", "Podcasts", "Ads"],
+      "overlaps": ["suno", "aiva", "epidemic-sound"],
+      "roiIndicators": {
+        "timesSaved": "Instant custom music",
+        "costReduction": "vs music licensing",
+        "productivityGain": "Unlimited royalty-free"
+      },
+      "integrations": ["Download"],
+      "strengths": ["Customizable", "Royalty-free", "Easy"],
+      "weaknesses": ["No vocals"]
+    },
+    {
+      "id": "udio",
+      "name": "Udio",
+      "vendor": "Udio",
+      "category": "Voice/Audio",
+      "description": "AI music generation with vocals",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "10 songs/month"},
+          {"name": "Standard", "price": 10, "period": "monthly", "limits": "1,200 songs/month"},
+          {"name": "Pro", "price": 30, "period": "monthly", "limits": "Unlimited"}
+        ]
+      },
+      "useCases": ["Music creation", "Jingles", "Creative projects", "Social media"],
+      "overlaps": ["suno", "soundraw"],
+      "roiIndicators": {
+        "timesSaved": "Create music instantly",
+        "costReduction": "vs music production",
+        "productivityGain": "Full songs with vocals"
+      },
+      "integrations": ["Web app"],
+      "strengths": ["Quality vocals", "Diverse genres", "Emerging leader"],
+      "weaknesses": ["New, licensing unclear"]
+    },
+    {
+      "id": "cleanvoice",
+      "name": "Cleanvoice",
+      "vendor": "Cleanvoice",
+      "category": "Voice/Audio",
+      "description": "AI audio cleanup for podcasts",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "30 min sample"},
+          {"name": "Pay-as-you-go", "price": 0.10, "period": "per minute", "limits": "Pay per use"},
+          {"name": "Subscription", "price": 10, "period": "monthly", "limits": "5 hours/month"}
+        ]
+      },
+      "useCases": ["Podcast cleanup", "Remove filler words", "Silence removal", "Noise reduction"],
+      "overlaps": ["descript", "adobe-podcast"],
+      "roiIndicators": {
+        "timesSaved": "Hours on editing",
+        "costReduction": "vs manual editing",
+        "productivityGain": "Automated cleanup"
+      },
+      "integrations": ["Upload"],
+      "strengths": ["Specialized", "Effective", "Affordable"],
+      "weaknesses": ["Single use case"]
+    },
+    {
+      "id": "krisp",
+      "name": "Krisp",
+      "vendor": "Krisp",
+      "category": "Voice/Audio",
+      "description": "AI noise cancellation for calls",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "60 min/day"},
+          {"name": "Pro", "price": 8, "period": "monthly", "limits": "Unlimited"},
+          {"name": "Business", "price": "custom", "limits": "Team features"}
+        ]
+      },
+      "useCases": ["Video calls", "Podcasting", "Work from home", "Call centers"],
+      "overlaps": ["rtx-voice", "zoom-noise"],
+      "roiIndicators": {
+        "timesSaved": "Better call quality",
+        "costReduction": "No acoustic treatment",
+        "productivityGain": "Work from anywhere"
+      },
+      "integrations": ["All calling apps"],
+      "strengths": ["Works everywhere", "Effective", "Easy"],
+      "weaknesses": ["CPU usage"]
+    },
+    {
+      "id": "durable",
+      "name": "Durable",
+      "vendor": "Durable",
+      "category": "Design",
+      "description": "AI website builder for small businesses",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Basic site"},
+          {"name": "Starter", "price": 12, "period": "monthly", "limits": "Custom domain"},
+          {"name": "Business", "price": 20, "period": "monthly", "limits": "CRM, invoicing"}
+        ]
+      },
+      "useCases": ["Small business websites", "Service businesses", "Quick launch"],
+      "overlaps": ["framer-ai", "wix", "squarespace"],
+      "roiIndicators": {
+        "timesSaved": "Site in 30 seconds",
+        "costReduction": "vs web developer",
+        "productivityGain": "Instant online presence"
+      },
+      "integrations": ["CRM", "Invoicing"],
+      "strengths": ["Fastest builder", "Business tools", "Simple"],
+      "weaknesses": ["Limited customization"]
+    },
+    {
+      "id": "looka",
+      "name": "Looka",
+      "vendor": "Looka",
+      "category": "Design",
+      "description": "AI logo and brand kit generator",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Generate logos"},
+          {"name": "Basic Logo", "price": 20, "period": "one-time", "limits": "1 logo"},
+          {"name": "Premium Logo", "price": 65, "period": "one-time", "limits": "Multiple formats"},
+          {"name": "Brand Kit", "price": 96, "period": "yearly", "limits": "Full brand assets"}
+        ]
+      },
+      "useCases": ["Logo design", "Brand identity", "Business cards", "Social assets"],
+      "overlaps": ["brandmark", "hatchful", "canva"],
+      "roiIndicators": {
+        "timesSaved": "Hours of design",
+        "costReduction": "vs logo designer",
+        "productivityGain": "Instant brand"
+      },
+      "integrations": ["Download"],
+      "strengths": ["Quality logos", "Brand kit", "Easy"],
+      "weaknesses": ["One-time purchase model"]
+    },
+    {
+      "id": "khroma",
+      "name": "Khroma",
+      "vendor": "Khroma",
+      "category": "Design",
+      "description": "AI color palette generator",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Full features"}
+        ]
+      },
+      "useCases": ["Color palettes", "Brand colors", "Design inspiration"],
+      "overlaps": ["coolors", "adobe-color"],
+      "roiIndicators": {
+        "timesSaved": "Find colors instantly",
+        "costReduction": "Free",
+        "productivityGain": "AI-learned preferences"
+      },
+      "integrations": ["Web app"],
+      "strengths": ["Free", "Learns preferences", "Unlimited palettes"],
+      "weaknesses": ["Single use case"]
+    },
+    {
+      "id": "simplified",
+      "name": "Simplified",
+      "vendor": "Simplified",
+      "category": "Design",
+      "description": "All-in-one AI design and content platform",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Limited features"},
+          {"name": "Small Team", "price": 30, "period": "monthly", "limits": "5 users"},
+          {"name": "Business", "price": 50, "period": "monthly", "limits": "Unlimited users"}
+        ]
+      },
+      "useCases": ["Design", "Writing", "Video", "Social media management"],
+      "overlaps": ["canva", "jasper", "buffer"],
+      "roiIndicators": {
+        "timesSaved": "All-in-one platform",
+        "costReduction": "Replace multiple tools",
+        "productivityGain": "Integrated workflow"
+      },
+      "integrations": ["Social platforms"],
+      "strengths": ["All-in-one", "Affordable", "AI features"],
+      "weaknesses": ["Less specialized"]
+    },
+    {
+      "id": "magician-figma",
+      "name": "Magician (Figma)",
+      "vendor": "Diagram",
+      "category": "Design",
+      "description": "AI design assistant plugin for Figma",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Limited uses"},
+          {"name": "Pro", "price": 10, "period": "monthly", "limits": "Unlimited"}
+        ]
+      },
+      "useCases": ["Icon generation", "Copy writing", "Image generation", "Design suggestions"],
+      "overlaps": ["figma-ai", "uizard"],
+      "roiIndicators": {
+        "timesSaved": "Faster design tasks",
+        "costReduction": "Affordable add-on",
+        "productivityGain": "AI in Figma"
+      },
+      "integrations": ["Figma plugin"],
+      "strengths": ["Figma native", "Multiple AI tools", "Easy"],
+      "weaknesses": ["Plugin = less integrated"]
+    },
+    {
+      "id": "windsurf",
+      "name": "Windsurf",
+      "vendor": "Codeium",
+      "category": "Coding/Development",
+      "description": "AI-powered code editor from Codeium",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Full features for individuals"},
+          {"name": "Pro", "price": 15, "period": "monthly", "limits": "More AI credits"},
+          {"name": "Team", "price": 30, "period": "monthly/user", "limits": "Team features"}
+        ]
+      },
+      "useCases": ["AI coding", "Code generation", "Codebase chat", "Refactoring"],
+      "overlaps": ["cursor", "github-copilot", "codeium"],
+      "roiIndicators": {
+        "timesSaved": "Significant for development",
+        "costReduction": "Free for individuals",
+        "productivityGain": "AI-native editor"
+      },
+      "integrations": ["VS Code extensions"],
+      "strengths": ["Free", "From Codeium team", "AI-first"],
+      "weaknesses": ["New, less proven"]
+    },
+    {
+      "id": "aider",
+      "name": "Aider",
+      "vendor": "Open Source",
+      "category": "Coding/Development",
+      "description": "AI pair programming in terminal",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Open source (bring your own API)"}
+        ]
+      },
+      "useCases": ["Terminal-based coding", "Code editing", "Git integration"],
+      "overlaps": ["cursor", "copilot", "claude-code"],
+      "roiIndicators": {
+        "timesSaved": "Fast terminal workflow",
+        "costReduction": "Free tool",
+        "productivityGain": "Git-aware AI coding"
+      },
+      "integrations": ["Git", "OpenAI", "Claude APIs"],
+      "strengths": ["Open source", "Git-aware", "Terminal-native"],
+      "weaknesses": ["Requires API keys"]
+    },
+    {
+      "id": "supermaven",
+      "name": "Supermaven",
+      "vendor": "Supermaven",
+      "category": "Coding/Development",
+      "description": "Fastest AI code completion",
+      "pricing": {
+        "tiers": [
+          {"name": "Free", "price": 0, "limits": "Full features"},
+          {"name": "Pro", "price": 10, "period": "monthly", "limits": "More features"}
+        ]
+      },
+      "useCases": ["Code completion", "Fast suggestions", "IDE integration"],
+      "overlaps": ["copilot", "codeium", "tabnine"],
+      "roiIndicators": {
+        "timesSaved": "Fastest completions",
+        "costReduction": "Free tier",
+        "productivityGain": "Zero latency"
+      },
+      "integrations": ["VS Code", "JetBrains"],
+      "strengths": ["Speed", "Free", "Large context"],
+      "weaknesses": ["Newer, smaller community"]
+    }
+  ],
+  "categoryMetadata": {
+    "LLM/Chat AI": {
+      "description": "Large language models and conversational AI assistants",
+      "avgMonthlyCost": "$0-30/user",
+      "keyConsiderations": ["Context window", "Reasoning ability", "API availability", "Privacy"]
+    },
+    "Coding/Development": {
+      "description": "AI-powered development tools and code assistants",
+      "avgMonthlyCost": "$0-40/user",
+      "keyConsiderations": ["IDE support", "Language coverage", "Context awareness", "Speed"]
+    },
+    "Writing/Content": {
+      "description": "AI writing assistants and content generation tools",
+      "avgMonthlyCost": "$10-60/user",
+      "keyConsiderations": ["Brand voice", "SEO features", "Output quality", "Templates"]
+    },
+    "Image Generation": {
+      "description": "AI image creation and manipulation tools",
+      "avgMonthlyCost": "$10-60/user",
+      "keyConsiderations": ["Quality", "Style control", "Commercial rights", "Speed"]
+    },
+    "Video": {
+      "description": "AI video creation, editing, and avatar tools",
+      "avgMonthlyCost": "$20-100/user",
+      "keyConsiderations": ["Quality", "Avatar realism", "Editing features", "Output format"]
+    },
+    "Voice/Audio": {
+      "description": "AI voice synthesis, transcription, and audio tools",
+      "avgMonthlyCost": "$5-50/user",
+      "keyConsiderations": ["Voice quality", "Languages", "Cloning ability", "Real-time"]
+    },
+    "Automation": {
+      "description": "Workflow automation and integration platforms",
+      "avgMonthlyCost": "$10-100/user",
+      "keyConsiderations": ["App integrations", "Complexity handling", "Pricing model", "Reliability"]
+    },
+    "Research/Analysis": {
+      "description": "AI tools for research, analysis, and insights",
+      "avgMonthlyCost": "$0-50/user",
+      "keyConsiderations": ["Source quality", "Citations", "Real-time data", "Accuracy"]
+    },
+    "Design": {
+      "description": "AI-powered design and creative tools",
+      "avgMonthlyCost": "$10-40/user",
+      "keyConsiderations": ["Output quality", "Templates", "Brand controls", "Export options"]
+    },
+    "Productivity": {
+      "description": "AI tools for personal and team productivity",
+      "avgMonthlyCost": "$10-30/user",
+      "keyConsiderations": ["Integration depth", "Learning curve", "Collaboration", "Platform support"]
+    },
+    "Data/Analytics": {
+      "description": "AI-powered data analysis and visualization",
+      "avgMonthlyCost": "$20-100/user",
+      "keyConsiderations": ["Data connectors", "Visualization", "Natural language", "Security"]
+    },
+    "Marketing": {
+      "description": "AI tools for marketing, SEO, and sales",
+      "avgMonthlyCost": "$50-200/user",
+      "keyConsiderations": ["Data quality", "Integrations", "Automation", "ROI tracking"]
+    },
+    "Customer Support": {
+      "description": "AI chatbots and support automation",
+      "avgMonthlyCost": "$20-100/seat",
+      "keyConsiderations": ["Resolution rate", "Training ease", "Handoff to human", "Integrations"]
+    }
+  }
+}

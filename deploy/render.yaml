@@ -1,0 +1,141 @@
+# ============================================
+# StackAudit.ai Render.com Blueprint
+# Infrastructure as Code for Render deployment
+# ============================================
+
+services:
+  # ===========================================
+  # Main Web Application
+  # ===========================================
+  - type: web
+    name: stackaudit
+    runtime: docker
+    dockerfilePath: ./deploy/Dockerfile
+    dockerContext: .
+    repo: https://github.com/BitCodeHub/stackaudit
+    branch: main
+    plan: free
+    region: oregon
+    
+    # Health Check
+    healthCheckPath: /health
+    
+    # Build Settings
+    buildFilter:
+      paths:
+        - server/**
+        - client/**
+        - deploy/Dockerfile
+    
+    # Auto-deploy on push
+    autoDeploy: true
+    
+    # Environment Variables
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      
+      # Database Connection (from Render PostgreSQL)
+      - key: DATABASE_URL
+        fromDatabase:
+          name: stackaudit-db
+          property: connectionString
+      
+      # Redis Connection (from Render Redis)
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: stackaudit-redis
+          property: connectionString
+      
+      # Security Keys (generate unique values!)
+      - key: JWT_SECRET
+        generateValue: true
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: ENCRYPTION_KEY
+        generateValue: true
+      
+      # API Keys (set manually in Render dashboard)
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      
+      # App Configuration
+      - key: ENABLE_ANALYTICS
+        value: "true"
+      - key: ENABLE_RATE_LIMITING
+        value: "true"
+      - key: LOG_LEVEL
+        value: info
+      
+      # CORS & Security
+      - key: ALLOWED_ORIGINS
+        value: https://stackaudit.onrender.com,https://stackaudit.ai
+      - key: TRUST_PROXY
+        value: "true"
+
+  # ===========================================
+  # Background Worker (for async jobs)
+  # ===========================================
+  - type: worker
+    name: stackaudit-worker
+    runtime: docker
+    dockerfilePath: ./deploy/Dockerfile
+    dockerContext: .
+    repo: https://github.com/BitCodeHub/stackaudit
+    branch: main
+    plan: free
+    region: oregon
+    
+    # Override command for worker mode
+    dockerCommand: node workers/job-processor.js
+    
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: WORKER_MODE
+        value: "true"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: stackaudit-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: stackaudit-redis
+          property: connectionString
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+
+# ===========================================
+# Databases
+# ===========================================
+databases:
+  - name: stackaudit-db
+    plan: free
+    region: oregon
+    databaseName: stackaudit
+    user: stackaudit
+    ipAllowList: []  # Only allow internal connections
+
+# ===========================================
+# Redis Cache
+# ===========================================
+  - type: redis
+    name: stackaudit-redis
+    plan: free
+    region: oregon
+    ipAllowList: []  # Only allow internal connections
+    maxmemoryPolicy: allkeys-lru
+
+# ===========================================
+# Preview Environments
+# ===========================================
+previewsEnabled: true
+previewsExpireAfterDays: 7
