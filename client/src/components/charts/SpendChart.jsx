@@ -10,60 +10,98 @@ import {
 } from 'recharts'
 import { formatCurrency } from '../../utils/formatters'
 
-export default function SpendChart({ data }) {
+// Professional color palette
+const COLORS = {
+  spend: '#8b5cf6',      // primary-500 (violet)
+  savings: '#10b981',    // success-500 (emerald)
+  grid: '#f4f4f5',       // neutral-100
+  text: '#71717a',       // neutral-500
+  border: '#e4e4e7',     // neutral-200
+}
+
+export default function SpendChart({ data, height = 320 }) {
   return (
-    <ResponsiveContainer width="100%" height={300}>
-      <AreaChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+    <ResponsiveContainer width="100%" height={height}>
+      <AreaChart 
+        data={data} 
+        margin={{ top: 20, right: 8, left: 0, bottom: 0 }}
+      >
         <defs>
-          <linearGradient id="colorSpend" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor="#0ea5e9" stopOpacity={0.3}/>
-            <stop offset="95%" stopColor="#0ea5e9" stopOpacity={0}/>
+          <linearGradient id="gradientSpend" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor={COLORS.spend} stopOpacity={0.2}/>
+            <stop offset="100%" stopColor={COLORS.spend} stopOpacity={0}/>
           </linearGradient>
-          <linearGradient id="colorSavings" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor="#10b981" stopOpacity={0.3}/>
-            <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
+          <linearGradient id="gradientSavings" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor={COLORS.savings} stopOpacity={0.2}/>
+            <stop offset="100%" stopColor={COLORS.savings} stopOpacity={0}/>
           </linearGradient>
         </defs>
-        <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+        
+        <CartesianGrid 
+          strokeDasharray="0" 
+          stroke={COLORS.grid} 
+          vertical={false}
+        />
+        
         <XAxis 
           dataKey="month" 
-          tick={{ fontSize: 12, fill: '#6b7280' }}
-          axisLine={{ stroke: '#e5e7eb' }}
+          tick={{ fontSize: 12, fill: COLORS.text, fontWeight: 500 }}
+          axisLine={{ stroke: COLORS.border }}
           tickLine={false}
+          dy={10}
         />
+        
         <YAxis 
-          tick={{ fontSize: 12, fill: '#6b7280' }}
+          tick={{ fontSize: 12, fill: COLORS.text, fontWeight: 500 }}
           axisLine={false}
           tickLine={false}
-          tickFormatter={(value) => `$${(value / 1000)}k`}
+          tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
+          dx={-10}
         />
-        <Tooltip 
-          content={<CustomTooltip />}
-        />
+        
+        <Tooltip content={<CustomTooltip />} />
+        
         <Legend 
           verticalAlign="top" 
-          height={36}
+          height={48}
           iconType="circle"
           iconSize={8}
-          formatter={(value) => <span className="text-sm text-gray-600">{value}</span>}
+          wrapperStyle={{ paddingBottom: 16 }}
+          formatter={(value) => (
+            <span className="text-sm font-medium text-neutral-600 ml-1">{value}</span>
+          )}
         />
+        
         <Area 
           type="monotone" 
           dataKey="spend" 
           name="Total Spend"
-          stroke="#0ea5e9" 
-          fillOpacity={1} 
-          fill="url(#colorSpend)" 
+          stroke={COLORS.spend}
           strokeWidth={2}
+          fill="url(#gradientSpend)"
+          dot={false}
+          activeDot={{ 
+            r: 4, 
+            stroke: COLORS.spend, 
+            strokeWidth: 2, 
+            fill: 'white' 
+          }}
         />
+        
         <Area 
           type="monotone" 
           dataKey="savings" 
-          name="Potential Savings"
-          stroke="#10b981" 
-          fillOpacity={1} 
-          fill="url(#colorSavings)" 
+          name="Identified Savings"
+          stroke={COLORS.savings}
           strokeWidth={2}
+          fill="url(#gradientSavings)"
+          dot={false}
+          activeDot={{ 
+            r: 4, 
+            stroke: COLORS.savings, 
+            strokeWidth: 2, 
+            fill: 'white' 
+          }}
         />
       </AreaChart>
     </ResponsiveContainer>
@@ -71,17 +109,27 @@ export default function SpendChart({ data }) {
 }
 
 function CustomTooltip({ active, payload, label }) {
-  if (active && payload && payload.length) {
-    return (
-      <div className="bg-white p-3 rounded-lg shadow-lg border border-gray-200">
-        <p className="text-sm font-medium text-gray-900 mb-2">{label}</p>
+  if (!active || !payload?.length) return null
+  
+  return (
+    <div className="bg-white rounded-xl shadow-large border border-neutral-200 p-4 min-w-[180px]">
+      <p className="text-sm font-semibold text-neutral-900 mb-3">{label}</p>
+      <div className="space-y-2">
         {payload.map((entry, index) => (
-          <p key={index} className="text-sm" style={{ color: entry.color }}>
-            {entry.name}: {formatCurrency(entry.value)}
-          </p>
+          <div key={index} className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-2">
+              <span 
+                className="w-2 h-2 rounded-full" 
+                style={{ backgroundColor: entry.color }}
+              />
+              <span className="text-sm text-neutral-600">{entry.name}</span>
+            </div>
+            <span className="text-sm font-semibold text-neutral-900 tabular-nums">
+              {formatCurrency(entry.value)}
+            </span>
+          </div>
         ))}
       </div>
-    )
-  }
-  return null
+    </div>
+  )
 }

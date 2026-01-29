@@ -10,17 +10,20 @@ import {
   Layers,
   DollarSign,
   Users,
-  Zap
+  Zap,
+  Sparkles
 } from 'lucide-react'
-import { Card, Button, Input, Badge } from '../components/shared'
+import { Card, Button, Badge } from '../components/shared'
+import Input from '../components/shared/Input'
 import { mockData } from '../utils/api'
+import { formatCurrency } from '../utils/formatters'
 import clsx from 'clsx'
 
 const steps = [
-  { id: 1, name: 'Select Tools', icon: Layers },
-  { id: 2, name: 'Add Costs', icon: DollarSign },
-  { id: 3, name: 'Usage Data', icon: Users },
-  { id: 4, name: 'Review', icon: Zap }
+  { id: 1, name: 'Select Tools', description: 'Choose your SaaS tools', icon: Layers },
+  { id: 2, name: 'Add Costs', description: 'Enter monthly costs', icon: DollarSign },
+  { id: 3, name: 'Usage Data', description: 'Add user metrics', icon: Users },
+  { id: 4, name: 'Review', description: 'Confirm and analyze', icon: Zap }
 ]
 
 export default function NewAuditPage() {
@@ -55,40 +58,27 @@ export default function NewAuditPage() {
   const handleToolDataChange = (toolId, field, value) => {
     setToolData({
       ...toolData,
-      [toolId]: {
-        ...toolData[toolId],
-        [field]: value
-      }
+      [toolId]: { ...toolData[toolId], [field]: value }
     })
   }
 
   const handleNext = () => {
-    if (currentStep < 4) {
-      setCurrentStep(currentStep + 1)
-    }
+    if (currentStep < 4) setCurrentStep(currentStep + 1)
   }
 
   const handleBack = () => {
-    if (currentStep > 1) {
-      setCurrentStep(currentStep - 1)
-    }
+    if (currentStep > 1) setCurrentStep(currentStep - 1)
   }
 
   const handleSubmit = async () => {
     setLoading(true)
-    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 2000))
     setLoading(false)
     navigate('/audit/1')
   }
 
-  const totalCost = Object.values(toolData).reduce((sum, data) => {
-    return sum + (parseFloat(data.monthlyCost) || 0)
-  }, 0)
-
-  const totalUsers = Object.values(toolData).reduce((sum, data) => {
-    return sum + (parseInt(data.users) || 0)
-  }, 0)
+  const totalCost = Object.values(toolData).reduce((sum, data) => sum + (parseFloat(data.monthlyCost) || 0), 0)
+  const totalUsers = Object.values(toolData).reduce((sum, data) => sum + (parseInt(data.users) || 0), 0)
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -96,59 +86,63 @@ export default function NewAuditPage() {
       <div className="mb-8">
         <button 
           onClick={() => navigate('/dashboard')}
-          className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center gap-2 text-neutral-500 hover:text-neutral-900 transition-colors mb-4 text-sm font-medium"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Dashboard
         </button>
-        <h1 className="text-2xl font-bold text-gray-900">Create New Audit</h1>
-        <p className="text-gray-500 mt-1">Analyze your SaaS stack and discover optimization opportunities</p>
+        <h1 className="text-2xl font-semibold text-neutral-900 tracking-tight">Create New Audit</h1>
+        <p className="text-neutral-500 mt-1">Analyze your SaaS stack and discover optimization opportunities</p>
       </div>
 
       {/* Progress Steps */}
-      <div className="mb-8">
-        <div className="flex items-center justify-between">
-          {steps.map((step, index) => (
-            <div key={step.id} className="flex items-center">
+      <div className="mb-10">
+        <div className="flex items-center justify-between relative">
+          {/* Progress line */}
+          <div className="absolute top-5 left-0 right-0 h-0.5 bg-neutral-200 -z-10" />
+          <div 
+            className="absolute top-5 left-0 h-0.5 bg-primary-500 -z-10 transition-all duration-500"
+            style={{ width: `${((currentStep - 1) / (steps.length - 1)) * 100}%` }}
+          />
+          
+          {steps.map((step) => (
+            <div key={step.id} className="flex flex-col items-center">
               <div className={clsx(
-                'flex items-center gap-2',
-                step.id === currentStep && 'text-primary-600',
-                step.id < currentStep && 'text-green-600',
-                step.id > currentStep && 'text-gray-400'
+                'w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold transition-all duration-300',
+                step.id < currentStep && 'bg-primary-500 text-white',
+                step.id === currentStep && 'bg-primary-500 text-white ring-4 ring-primary-100',
+                step.id > currentStep && 'bg-white border-2 border-neutral-200 text-neutral-400'
               )}>
-                <div className={clsx(
-                  'w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium',
-                  step.id === currentStep && 'bg-primary-100 text-primary-600',
-                  step.id < currentStep && 'bg-green-100 text-green-600',
-                  step.id > currentStep && 'bg-gray-100 text-gray-400'
-                )}>
-                  {step.id < currentStep ? (
-                    <Check className="w-5 h-5" />
-                  ) : (
-                    <step.icon className="w-5 h-5" />
-                  )}
-                </div>
-                <span className="hidden sm:block font-medium">{step.name}</span>
+                {step.id < currentStep ? (
+                  <Check className="w-5 h-5" />
+                ) : (
+                  step.id
+                )}
               </div>
-              {index < steps.length - 1 && (
+              <div className="mt-3 text-center">
                 <div className={clsx(
-                  'hidden sm:block w-20 lg:w-32 h-0.5 mx-4',
-                  step.id < currentStep ? 'bg-green-500' : 'bg-gray-200'
-                )} />
-              )}
+                  'text-sm font-medium transition-colors',
+                  step.id <= currentStep ? 'text-neutral-900' : 'text-neutral-400'
+                )}>
+                  {step.name}
+                </div>
+                <div className="text-xs text-neutral-500 mt-0.5 hidden sm:block">
+                  {step.description}
+                </div>
+              </div>
             </div>
           ))}
         </div>
       </div>
 
       {/* Step Content */}
-      <Card className="p-6 mb-6">
+      <Card className="p-8 mb-6">
         {/* Step 1: Select Tools */}
         {currentStep === 1 && (
           <div className="space-y-6">
             <div>
-              <h2 className="text-lg font-semibold text-gray-900 mb-1">Select Your Tools</h2>
-              <p className="text-gray-500">Choose the SaaS tools you want to include in this audit</p>
+              <h2 className="text-lg font-semibold text-neutral-900">Select Your Tools</h2>
+              <p className="text-neutral-500 text-sm mt-1">Choose the SaaS tools you want to include in this audit</p>
             </div>
 
             <Input
@@ -159,18 +153,18 @@ export default function NewAuditPage() {
             />
 
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-              <Input
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 pointer-events-none" />
+              <input
                 placeholder="Search tools..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10"
+                className="w-full pl-10 pr-4 py-2.5 rounded-lg text-sm text-neutral-900 placeholder:text-neutral-400 bg-neutral-50 border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all"
               />
             </div>
 
             {selectedTools.length > 0 && (
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 mb-2">
                   Selected ({selectedTools.length})
                 </label>
                 <div className="flex flex-wrap gap-2">
@@ -178,12 +172,12 @@ export default function NewAuditPage() {
                     <Badge 
                       key={tool.id}
                       variant="primary"
-                      className="flex items-center gap-1 cursor-pointer"
-                      onClick={() => handleToolSelect(tool)}
+                      pill
+                      removable
+                      onRemove={() => handleToolSelect(tool)}
                     >
-                      <span>{tool.logo}</span>
+                      <span className="mr-1">{tool.logo}</span>
                       {tool.name}
-                      <X className="w-3 h-3 ml-1" />
                     </Badge>
                   ))}
                 </div>
@@ -191,32 +185,37 @@ export default function NewAuditPage() {
             )}
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              {filteredTools.map(tool => (
-                <button
-                  key={tool.id}
-                  onClick={() => handleToolSelect(tool)}
-                  className={clsx(
-                    'p-4 border rounded-lg text-left transition-all',
-                    selectedTools.find(t => t.id === tool.id)
-                      ? 'border-primary-500 bg-primary-50 ring-1 ring-primary-500'
-                      : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
-                  )}
-                >
-                  <div className="flex items-start gap-3">
-                    <span className="text-2xl">{tool.logo}</span>
-                    <div>
-                      <div className="font-medium text-gray-900">{tool.name}</div>
-                      <div className="text-sm text-gray-500">{tool.category}</div>
-                    </div>
-                    {selectedTools.find(t => t.id === tool.id) && (
-                      <Check className="w-5 h-5 text-primary-500 ml-auto" />
+              {filteredTools.map(tool => {
+                const isSelected = selectedTools.find(t => t.id === tool.id)
+                return (
+                  <button
+                    key={tool.id}
+                    onClick={() => handleToolSelect(tool)}
+                    className={clsx(
+                      'p-4 border rounded-xl text-left transition-all duration-150',
+                      isSelected
+                        ? 'border-primary-500 bg-primary-50/50 ring-1 ring-primary-500'
+                        : 'border-neutral-200 hover:border-neutral-300 hover:bg-neutral-50'
                     )}
-                  </div>
-                </button>
-              ))}
+                  >
+                    <div className="flex items-start gap-3">
+                      <span className="text-2xl">{tool.logo}</span>
+                      <div className="flex-1 min-w-0">
+                        <div className="font-medium text-neutral-900 text-sm">{tool.name}</div>
+                        <div className="text-xs text-neutral-500 mt-0.5">{tool.category}</div>
+                      </div>
+                      {isSelected && (
+                        <div className="w-5 h-5 bg-primary-500 rounded-full flex items-center justify-center">
+                          <Check className="w-3 h-3 text-white" />
+                        </div>
+                      )}
+                    </div>
+                  </button>
+                )
+              })}
             </div>
 
-            <button className="flex items-center gap-2 text-primary-600 hover:text-primary-700 font-medium">
+            <button className="flex items-center gap-2 text-primary-600 hover:text-primary-700 font-medium text-sm transition-colors">
               <Plus className="w-4 h-4" />
               Add custom tool
             </button>
@@ -227,39 +226,39 @@ export default function NewAuditPage() {
         {currentStep === 2 && (
           <div className="space-y-6">
             <div>
-              <h2 className="text-lg font-semibold text-gray-900 mb-1">Add Cost Information</h2>
-              <p className="text-gray-500">Enter the monthly cost for each selected tool</p>
+              <h2 className="text-lg font-semibold text-neutral-900">Add Cost Information</h2>
+              <p className="text-neutral-500 text-sm mt-1">Enter the monthly cost for each selected tool</p>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3">
               {selectedTools.map(tool => (
-                <div key={tool.id} className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
+                <div key={tool.id} className="flex items-center gap-4 p-4 bg-neutral-50 rounded-xl border border-neutral-100">
                   <span className="text-2xl">{tool.logo}</span>
-                  <div className="flex-1">
-                    <div className="font-medium text-gray-900">{tool.name}</div>
-                    <div className="text-sm text-gray-500">{tool.category}</div>
+                  <div className="flex-1 min-w-0">
+                    <div className="font-medium text-neutral-900 text-sm">{tool.name}</div>
+                    <div className="text-xs text-neutral-500">{tool.category}</div>
                   </div>
-                  <div className="w-40">
+                  <div className="w-36">
                     <div className="relative">
-                      <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                      <Input
+                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400 text-sm">$</span>
+                      <input
                         type="number"
                         placeholder="0.00"
                         value={toolData[tool.id]?.monthlyCost || ''}
                         onChange={(e) => handleToolDataChange(tool.id, 'monthlyCost', e.target.value)}
-                        className="pl-8"
+                        className="w-full pl-7 pr-3 py-2 rounded-lg text-sm text-neutral-900 placeholder:text-neutral-400 bg-white border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500"
                       />
                     </div>
-                    <div className="text-xs text-gray-500 mt-1">per month</div>
+                    <div className="text-[10px] text-neutral-400 mt-1 text-center">per month</div>
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="p-4 bg-primary-50 rounded-lg flex items-center justify-between">
-              <span className="font-medium text-primary-700">Total Monthly Cost</span>
-              <span className="text-2xl font-bold text-primary-700">
-                ${totalCost.toLocaleString()}
+            <div className="p-5 bg-gradient-to-br from-primary-50 to-primary-50/30 rounded-xl border border-primary-100 flex items-center justify-between">
+              <span className="font-medium text-primary-800">Total Monthly Cost</span>
+              <span className="text-2xl font-bold text-primary-700 tabular-nums">
+                {formatCurrency(totalCost)}
               </span>
             </div>
           </div>
@@ -269,45 +268,43 @@ export default function NewAuditPage() {
         {currentStep === 3 && (
           <div className="space-y-6">
             <div>
-              <h2 className="text-lg font-semibold text-gray-900 mb-1">Add Usage Information</h2>
-              <p className="text-gray-500">Help us calculate ROI by adding user counts and utilization estimates</p>
+              <h2 className="text-lg font-semibold text-neutral-900">Add Usage Information</h2>
+              <p className="text-neutral-500 text-sm mt-1">Help us calculate ROI by adding user counts and utilization estimates</p>
             </div>
 
             <div className="space-y-4">
               {selectedTools.map(tool => (
-                <div key={tool.id} className="p-4 bg-gray-50 rounded-lg">
+                <div key={tool.id} className="p-5 bg-neutral-50 rounded-xl border border-neutral-100">
                   <div className="flex items-center gap-3 mb-4">
                     <span className="text-2xl">{tool.logo}</span>
                     <div>
-                      <div className="font-medium text-gray-900">{tool.name}</div>
-                      <div className="text-sm text-gray-500">
-                        ${toolData[tool.id]?.monthlyCost || 0}/mo
+                      <div className="font-medium text-neutral-900 text-sm">{tool.name}</div>
+                      <div className="text-xs text-neutral-500">
+                        {formatCurrency(parseFloat(toolData[tool.id]?.monthlyCost) || 0)}/mo
                       </div>
                     </div>
                   </div>
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Licensed Users
-                      </label>
-                      <Input
+                      <label className="block text-xs font-medium text-neutral-600 mb-1.5">Licensed Users</label>
+                      <input
                         type="number"
                         placeholder="e.g., 50"
                         value={toolData[tool.id]?.users || ''}
                         onChange={(e) => handleToolDataChange(tool.id, 'users', e.target.value)}
+                        className="w-full px-3 py-2 rounded-lg text-sm text-neutral-900 placeholder:text-neutral-400 bg-white border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Utilization (%)
-                      </label>
-                      <Input
+                      <label className="block text-xs font-medium text-neutral-600 mb-1.5">Utilization (%)</label>
+                      <input
                         type="number"
                         placeholder="e.g., 75"
                         min="0"
                         max="100"
                         value={toolData[tool.id]?.utilization || ''}
                         onChange={(e) => handleToolDataChange(tool.id, 'utilization', e.target.value)}
+                        className="w-full px-3 py-2 rounded-lg text-sm text-neutral-900 placeholder:text-neutral-400 bg-white border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500"
                       />
                     </div>
                   </div>
@@ -316,18 +313,15 @@ export default function NewAuditPage() {
             </div>
 
             <div className="grid sm:grid-cols-2 gap-4">
-              <div className="p-4 bg-blue-50 rounded-lg">
-                <span className="text-sm text-blue-600">Total Licensed Users</span>
-                <div className="text-2xl font-bold text-blue-700">{totalUsers}</div>
+              <div className="p-4 bg-accent-50 rounded-xl border border-accent-100">
+                <span className="text-xs font-medium text-accent-700">Total Licensed Users</span>
+                <div className="text-2xl font-bold text-accent-800 tabular-nums">{totalUsers}</div>
               </div>
-              <div className="p-4 bg-green-50 rounded-lg">
-                <span className="text-sm text-green-600">Avg. Utilization</span>
-                <div className="text-2xl font-bold text-green-700">
+              <div className="p-4 bg-success-50 rounded-xl border border-success-100">
+                <span className="text-xs font-medium text-success-700">Avg. Utilization</span>
+                <div className="text-2xl font-bold text-success-800 tabular-nums">
                   {selectedTools.length > 0
-                    ? Math.round(
-                        Object.values(toolData).reduce((sum, d) => sum + (parseInt(d.utilization) || 0), 0) /
-                        selectedTools.length
-                      )
+                    ? Math.round(Object.values(toolData).reduce((sum, d) => sum + (parseInt(d.utilization) || 0), 0) / selectedTools.length)
                     : 0}%
                 </div>
               </div>
@@ -339,33 +333,35 @@ export default function NewAuditPage() {
         {currentStep === 4 && (
           <div className="space-y-6">
             <div>
-              <h2 className="text-lg font-semibold text-gray-900 mb-1">Review Your Audit</h2>
-              <p className="text-gray-500">Confirm the details before running the analysis</p>
+              <h2 className="text-lg font-semibold text-neutral-900">Review Your Audit</h2>
+              <p className="text-neutral-500 text-sm mt-1">Confirm the details before running the analysis</p>
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-4">
-              <h3 className="font-medium text-gray-900 mb-1">{auditName || 'Untitled Audit'}</h3>
-              <p className="text-sm text-gray-500">{selectedTools.length} tools • ${totalCost.toLocaleString()}/mo • {totalUsers} users</p>
+            <div className="p-4 bg-neutral-50 rounded-xl border border-neutral-200">
+              <h3 className="font-semibold text-neutral-900">{auditName || 'Untitled Audit'}</h3>
+              <p className="text-sm text-neutral-500 mt-1">
+                {selectedTools.length} tools • {formatCurrency(totalCost)}/mo • {totalUsers} users
+              </p>
             </div>
 
             <div>
-              <h4 className="font-medium text-gray-900 mb-3">Tools Included</h4>
+              <h4 className="font-medium text-neutral-900 text-sm mb-3">Tools Included</h4>
               <div className="space-y-2">
                 {selectedTools.map(tool => (
-                  <div key={tool.id} className="flex items-center justify-between p-3 bg-white border border-gray-200 rounded-lg">
+                  <div key={tool.id} className="flex items-center justify-between p-3 bg-white border border-neutral-200 rounded-xl">
                     <div className="flex items-center gap-3">
                       <span className="text-xl">{tool.logo}</span>
                       <div>
-                        <div className="font-medium text-gray-900">{tool.name}</div>
-                        <div className="text-sm text-gray-500">{tool.category}</div>
+                        <div className="font-medium text-neutral-900 text-sm">{tool.name}</div>
+                        <div className="text-xs text-neutral-500">{tool.category}</div>
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="font-medium text-gray-900">
-                        ${toolData[tool.id]?.monthlyCost || 0}/mo
+                      <div className="font-medium text-neutral-900 text-sm tabular-nums">
+                        {formatCurrency(parseFloat(toolData[tool.id]?.monthlyCost) || 0)}/mo
                       </div>
-                      <div className="text-sm text-gray-500">
-                        {toolData[tool.id]?.users || 0} users • {toolData[tool.id]?.utilization || 0}% utilized
+                      <div className="text-xs text-neutral-500 tabular-nums">
+                        {toolData[tool.id]?.users || 0} users • {toolData[tool.id]?.utilization || 0}%
                       </div>
                     </div>
                   </div>
@@ -373,12 +369,14 @@ export default function NewAuditPage() {
               </div>
             </div>
 
-            <div className="p-4 bg-primary-50 rounded-lg">
-              <div className="flex items-center gap-2 text-primary-700 mb-2">
-                <Zap className="w-5 h-5" />
-                <span className="font-medium">What happens next?</span>
+            <div className="p-5 bg-gradient-to-br from-primary-50 to-accent-50 rounded-xl border border-primary-100">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl flex items-center justify-center">
+                  <Sparkles className="w-5 h-5 text-white" />
+                </div>
+                <span className="font-semibold text-neutral-900">What happens next?</span>
               </div>
-              <p className="text-sm text-primary-600">
+              <p className="text-sm text-neutral-600 leading-relaxed">
                 Our AI will analyze your stack for redundancies, underutilization, and cost optimization opportunities. 
                 You'll receive detailed recommendations within seconds.
               </p>
@@ -390,7 +388,7 @@ export default function NewAuditPage() {
       {/* Navigation */}
       <div className="flex items-center justify-between">
         <Button
-          variant="secondary"
+          variant="ghost"
           onClick={handleBack}
           disabled={currentStep === 1}
           icon={ArrowLeft}
@@ -414,7 +412,7 @@ export default function NewAuditPage() {
           <Button
             onClick={handleSubmit}
             loading={loading}
-            icon={Zap}
+            icon={Sparkles}
           >
             Run Analysis
           </Button>
