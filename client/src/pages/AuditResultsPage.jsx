@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { 
   ArrowLeft, 
@@ -17,7 +17,7 @@ import {
 } from 'lucide-react'
 import { Card, CardHeader, CardTitle, CardContent, Button, Badge } from '../components/shared'
 import { SpendChart, CategoryPieChart, UtilizationBar, ROIGauge } from '../components/charts'
-import { mockData } from '../utils/api'
+import { api, mockData } from '../utils/api'
 import { formatCurrency, formatDate, getStatusColor } from '../utils/formatters'
 import clsx from 'clsx'
 
@@ -33,8 +33,56 @@ export default function AuditResultsPage() {
   const { id } = useParams()
   const navigate = useNavigate()
   const [activeTab, setActiveTab] = useState('overview')
-  
-  const audit = mockData.auditDetails
+  const [audit, setAudit] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+
+  useEffect(() => {
+    const fetchAudit = async () => {
+      try {
+        const data = await api.getAudit(id)
+        // Transform API response to match expected structure
+        const auditData = data.audit
+        setAudit({
+          ...auditData,
+          // Ensure we have all required fields, using defaults if missing
+          summary: auditData.results?.summary || mockData.auditDetails.summary,
+          tools: auditData.results?.tools || mockData.auditDetails.tools,
+          spendByCategory: auditData.results?.spendByCategory || mockData.auditDetails.spendByCategory,
+          monthlyTrend: auditData.results?.monthlyTrend || mockData.auditDetails.monthlyTrend
+        })
+      } catch (err) {
+        console.error('Failed to fetch audit:', err)
+        setError(err.message)
+        // Fall back to mock data for demo
+        setAudit(mockData.auditDetails)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchAudit()
+  }, [id])
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+      </div>
+    )
+  }
+
+  // Handle case where audit is null
+  if (!audit) {
+    return (
+      <div className="text-center py-12">
+        <p className="text-neutral-500">Audit not found</p>
+        <Button onClick={() => navigate('/dashboard')} className="mt-4">
+          Back to Dashboard
+        </Button>
+      </div>
+    )
+  }
 
   const tabs = [
     { id: 'overview', name: 'Overview' },

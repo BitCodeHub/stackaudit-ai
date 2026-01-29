@@ -1,7 +1,8 @@
+// API base URL - empty string for same-origin in production
 const API_BASE = import.meta.env.VITE_API_URL || (
   window.location.hostname === 'localhost' 
-    ? 'http://localhost:3002' 
-    : 'https://stackaudit-api.onrender.com'
+    ? 'http://localhost:3001'  // Local server port
+    : ''  // Same origin in production (server serves both API and frontend)
 )
 
 function getAuthHeaders() {
@@ -30,21 +31,40 @@ export async function apiRequest(endpoint, options = {}) {
 }
 
 export const api = {
+  // Auth
+  login: (email, password) => apiRequest('/api/auth/login', { 
+    method: 'POST', 
+    body: JSON.stringify({ email, password }) 
+  }),
+  signup: (data) => apiRequest('/api/auth/signup', { 
+    method: 'POST', 
+    body: JSON.stringify(data) 
+  }),
+  me: () => apiRequest('/api/auth/me'),
+  
   // Audits
-  getAudits: () => apiRequest('/audits'),
-  getAudit: (id) => apiRequest(`/audits/${id}`),
-  createAudit: (data) => apiRequest('/audits', { method: 'POST', body: JSON.stringify(data) }),
-  deleteAudit: (id) => apiRequest(`/audits/${id}`, { method: 'DELETE' }),
+  getAudits: () => apiRequest('/api/audits'),
+  getAudit: (id) => apiRequest(`/api/audits/${id}`),
+  createAudit: (data) => apiRequest('/api/audits', { method: 'POST', body: JSON.stringify(data) }),
+  deleteAudit: (id) => apiRequest(`/api/audits/${id}`, { method: 'DELETE' }),
+  updateAudit: (id, data) => apiRequest(`/api/audits/${id}`, { method: 'PATCH', body: JSON.stringify(data) }),
   
   // Recommendations
-  getRecommendations: (auditId) => apiRequest(`/audits/${auditId}/recommendations`),
+  getRecommendations: (auditId) => apiRequest(`/api/recommendations?auditId=${auditId}`),
   
   // User
-  updateProfile: (data) => apiRequest('/user/profile', { method: 'PUT', body: JSON.stringify(data) }),
-  updateBilling: (data) => apiRequest('/user/billing', { method: 'PUT', body: JSON.stringify(data) }),
+  updateProfile: (data) => apiRequest('/api/users/profile', { method: 'PUT', body: JSON.stringify(data) }),
   
-  // Tools catalog
-  searchTools: (query) => apiRequest(`/tools/search?q=${encodeURIComponent(query)}`),
+  // Billing
+  updateBilling: (data) => apiRequest('/api/billing', { method: 'PUT', body: JSON.stringify(data) }),
+  
+  // Analysis
+  analyzeStack: (auditId) => apiRequest(`/api/analysis/audit/${auditId}`, { method: 'POST' }),
+  
+  // Tools catalog (mock for now)
+  searchTools: (query) => Promise.resolve({ tools: mockData.toolCatalog.filter(t => 
+    t.name.toLowerCase().includes(query.toLowerCase())
+  )}),
 }
 
 // Mock data for demo purposes

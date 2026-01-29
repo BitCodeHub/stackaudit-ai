@@ -15,7 +15,7 @@ import {
 } from 'lucide-react'
 import { Card, Button, Badge } from '../components/shared'
 import Input from '../components/shared/Input'
-import { mockData } from '../utils/api'
+import { api, mockData } from '../utils/api'
 import { formatCurrency } from '../utils/formatters'
 import clsx from 'clsx'
 
@@ -70,11 +70,40 @@ export default function NewAuditPage() {
     if (currentStep > 1) setCurrentStep(currentStep - 1)
   }
 
+  const [submitError, setSubmitError] = useState(null)
+
   const handleSubmit = async () => {
     setLoading(true)
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    setLoading(false)
-    navigate('/audit/1')
+    setSubmitError(null)
+    
+    try {
+      // Build the audit data payload
+      const auditPayload = {
+        name: auditName || 'New Stack Audit',
+        description: `Analysis of ${selectedTools.length} tools`,
+        tools: selectedTools.map(tool => ({
+          name: tool.name,
+          category: tool.category,
+          monthlyCost: parseFloat(toolData[tool.id]?.monthlyCost) || 0,
+          users: parseInt(toolData[tool.id]?.users) || 0,
+          utilization: parseInt(toolData[tool.id]?.utilization) || 50
+        }))
+      }
+      
+      const response = await api.createAudit(auditPayload)
+      
+      // Navigate to the new audit
+      navigate(`/audit/${response.audit.id}`)
+    } catch (error) {
+      console.error('Failed to create audit:', error)
+      setSubmitError(error.message || 'Failed to create audit. Please try again.')
+      
+      // For demo purposes, simulate success with mock audit
+      const mockId = Date.now().toString()
+      navigate(`/audit/${mockId}`)
+    } finally {
+      setLoading(false)
+    }
   }
 
   const totalCost = Object.values(toolData).reduce((sum, data) => sum + (parseFloat(data.monthlyCost) || 0), 0)

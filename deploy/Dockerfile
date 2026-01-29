@@ -64,5 +64,5 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
 # Use dumb-init as PID 1 for proper signal handling
 ENTRYPOINT ["dumb-init", "--"]
 
-# Start the application
-CMD ["node", "index.js"]
+# Start the application (use src/index.js - the main API server)
+CMD ["node", "src/index.js"]

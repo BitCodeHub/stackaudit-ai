@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { 
   TrendingDown, 
@@ -16,7 +16,7 @@ import {
 } from 'lucide-react'
 import { Card, CardHeader, CardTitle, CardContent, Button, Badge, EmptyState, MetricCard } from '../components/shared'
 import { SpendChart } from '../components/charts'
-import { mockData } from '../utils/api'
+import { api, mockData } from '../utils/api'
 import { formatCurrency, formatDate, formatPercentage } from '../utils/formatters'
 import clsx from 'clsx'
 
@@ -57,7 +57,26 @@ const stats = [
 
 export default function DashboardPage() {
   const navigate = useNavigate()
-  const [audits] = useState(mockData.audits)
+  const [audits, setAudits] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+
+  useEffect(() => {
+    const fetchAudits = async () => {
+      try {
+        const data = await api.getAudits()
+        setAudits(data.audits || [])
+      } catch (err) {
+        console.error('Failed to fetch audits:', err)
+        setError(err.message)
+        // Fall back to mock data for demo purposes
+        setAudits(mockData.audits)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchAudits()
+  }, [])
 
   return (
     <div className="space-y-8">
