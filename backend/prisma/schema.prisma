@@ -1,0 +1,68 @@
+// This is your Prisma schema file
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  companyName  String?  @map("company_name")
+  companySize  String?  @map("company_size")
+  createdAt    DateTime @default(now()) @map("created_at")
+  
+  audits       Audit[]
+
+  @@map("users")
+}
+
+model Audit {
+  id                String   @id @default(uuid())
+  userId            String   @map("user_id")
+  status            String   @default("draft") // draft, analyzing, complete, failed
+  tier              String   @default("free") // free, paid
+  totalSpend        Decimal? @map("total_spend") @db.Decimal(10, 2)
+  potentialSavings  Decimal? @map("potential_savings") @db.Decimal(10, 2)
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+  
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tools             AuditTool[]
+  recommendations   Recommendation[]
+
+  @@map("audits")
+}
+
+model AuditTool {
+  id           String   @id @default(uuid())
+  auditId      String   @map("audit_id")
+  toolName     String   @map("tool_name")
+  monthlyCost  Decimal  @map("monthly_cost") @db.Decimal(10, 2)
+  seats        Int      @default(1)
+  useCases     String[] @map("use_cases")
+  utilization  String?  // high, medium, low, unknown
+  createdAt    DateTime @default(now()) @map("created_at")
+  
+  audit        Audit    @relation(fields: [auditId], references: [id], onDelete: Cascade)
+
+  @@map("audit_tools")
+}
+
+model Recommendation {
+  id               String   @id @default(uuid())
+  auditId          String   @map("audit_id")
+  type             String   // consolidate, eliminate, keep, migrate
+  priority         Int      @default(0) // 1-5, higher = more important
+  description      String   @db.Text
+  savingsEstimate  Decimal? @map("savings_estimate") @db.Decimal(10, 2)
+  createdAt        DateTime @default(now()) @map("created_at")
+  
+  audit            Audit    @relation(fields: [auditId], references: [id], onDelete: Cascade)
+
+  @@map("recommendations")
+}
