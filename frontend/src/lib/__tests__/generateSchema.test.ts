@@ -37,7 +37,7 @@ describe('generateOrganizationSchema', () => {
   });
 
   it('should include social media links', () => {
-    const schema = generateOrganizationSchema();
+    const schema = generateOrganizationSchema() as any;
 
     expect(schema.sameAs).toBeInstanceOf(Array);
     expect(schema.sameAs.length).toBeGreaterThan(0);
@@ -46,7 +46,7 @@ describe('generateOrganizationSchema', () => {
   });
 
   it('should include contact point', () => {
-    const schema = generateOrganizationSchema();
+    const schema = generateOrganizationSchema() as any;
 
     expect(schema.contactPoint).toBeDefined();
     expect(schema.contactPoint['@type']).toBe('ContactPoint');
@@ -66,7 +66,7 @@ describe('generateSoftwareApplicationSchema', () => {
   });
 
   it('should include description and features', () => {
-    const schema = generateSoftwareApplicationSchema();
+    const schema = generateSoftwareApplicationSchema() as any;
 
     expect(schema.description).toBeDefined();
     expect(schema.description.length).toBeGreaterThan(50);
@@ -75,7 +75,7 @@ describe('generateSoftwareApplicationSchema', () => {
   });
 
   it('should include pricing with free tier', () => {
-    const schema = generateSoftwareApplicationSchema();
+    const schema = generateSoftwareApplicationSchema() as any;
 
     expect(schema.offers).toBeDefined();
     expect(schema.offers['@type']).toBe('Offer');
@@ -91,7 +91,7 @@ describe('generateSoftwareApplicationSchema', () => {
   });
 
   it('should include author organization', () => {
-    const schema = generateSoftwareApplicationSchema();
+    const schema = generateSoftwareApplicationSchema() as any;
 
     expect(schema.author).toBeDefined();
     expect(schema.author['@type']).toBe('Organization');
@@ -115,7 +115,7 @@ describe('generateFAQPageSchema', () => {
       { question: 'Question 1?', answer: 'Answer 1' },
       { question: 'Question 2?', answer: 'Answer 2' },
     ];
-    const schema = generateFAQPageSchema(faqs);
+    const schema = generateFAQPageSchema(faqs) as any;
 
     expect(schema.mainEntity).toBeInstanceOf(Array);
     expect(schema.mainEntity.length).toBe(2);
@@ -125,7 +125,7 @@ describe('generateFAQPageSchema', () => {
     const faqs: FAQItem[] = [
       { question: 'Test question?', answer: 'Test answer' },
     ];
-    const schema = generateFAQPageSchema(faqs);
+    const schema = generateFAQPageSchema(faqs) as any;
 
     schema.mainEntity.forEach((question: any) => {
       expect(question['@type']).toBe('Question');
@@ -139,7 +139,7 @@ describe('generateFAQPageSchema', () => {
     const faqs: FAQItem[] = [
       { question: 'Test question?', answer: 'Test answer' },
     ];
-    const schema = generateFAQPageSchema(faqs);
+    const schema = generateFAQPageSchema(faqs) as any;
 
     schema.mainEntity.forEach((question: any) => {
       expect(question.acceptedAnswer['@type']).toBe('Answer');
@@ -149,7 +149,7 @@ describe('generateFAQPageSchema', () => {
   });
 
   it('should handle empty FAQ array', () => {
-    const schema = generateFAQPageSchema([]);
+    const schema = generateFAQPageSchema([]) as any;
 
     expect(schema.mainEntity).toBeInstanceOf(Array);
     expect(schema.mainEntity.length).toBe(0);
@@ -176,7 +176,7 @@ describe('generateBreadcrumbSchema', () => {
       { name: 'API', url: 'https://stackaudit.ai/docs/api' },
     ];
 
-    const schema = generateBreadcrumbSchema(breadcrumbs);
+    const schema = generateBreadcrumbSchema(breadcrumbs) as any;
 
     expect(schema.itemListElement).toBeInstanceOf(Array);
     expect(schema.itemListElement.length).toBe(3);
@@ -193,14 +193,14 @@ describe('generateBreadcrumbSchema', () => {
     const breadcrumbs: BreadcrumbItem[] = [
       { name: 'Home', url: 'https://stackaudit.ai' },
     ];
-    const schema = generateBreadcrumbSchema(breadcrumbs);
+    const schema = generateBreadcrumbSchema(breadcrumbs) as any;
 
     expect(schema.itemListElement.length).toBe(1);
     expect(schema.itemListElement[0].position).toBe(1);
   });
 
   it('should handle empty breadcrumbs gracefully', () => {
-    const schema = generateBreadcrumbSchema([]);
+    const schema = generateBreadcrumbSchema([]) as any;
 
     expect(schema.itemListElement).toBeInstanceOf(Array);
     expect(schema.itemListElement.length).toBe(0);

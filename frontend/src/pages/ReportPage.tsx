@@ -151,7 +151,7 @@ export const ReportPage: React.FC<ReportPageProps> = ({
                 Key Findings
               </h4>
               <ul className="space-y-2">
-                {report.analysis.keyFindings.map((finding, idx) => (
+                {report.analysis.keyFindings.map((finding: string, idx: number) => (
                   <li key={idx} className="flex items-start">
                     <span className="text-blue-600 mr-2">•</span>
                     <span className="text-gray-700">{finding}</span>
@@ -167,7 +167,7 @@ export const ReportPage: React.FC<ReportPageProps> = ({
                 Action Items
               </h4>
               <ul className="space-y-2">
-                {report.analysis.actionItems.map((item, idx) => (
+                {report.analysis.actionItems.map((item: string, idx: number) => (
                   <li key={idx} className="flex items-start">
                     <span className="text-green-600 mr-2">✓</span>
                     <span className="text-gray-700">{item}</span>
@@ -184,7 +184,7 @@ export const ReportPage: React.FC<ReportPageProps> = ({
             Current AI Tools ({report.tools.length})
           </h3>
           <div className="space-y-4">
-            {report.tools.map((tool) => (
+            {report.tools.map((tool: any) => (
               <div
                 key={tool.id}
                 className="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition"
@@ -203,7 +203,7 @@ export const ReportPage: React.FC<ReportPageProps> = ({
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  {tool.useCases.map((useCase) => (
+                  {tool.useCases.map((useCase: string) => (
                     <span
                       key={useCase}
                       className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full"
@@ -224,7 +224,7 @@ export const ReportPage: React.FC<ReportPageProps> = ({
               Recommendations ({report.recommendations.length})
             </h3>
             <div className="space-y-4">
-              {report.recommendations.map((rec) => (
+              {report.recommendations.map((rec: any) => (
                 <div
                   key={rec.id}
                   className={`border-l-4 rounded-lg p-4 ${
