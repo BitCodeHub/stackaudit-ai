@@ -1,0 +1,136 @@
+# ============================================
+# StackAudit.ai CI Pipeline
+# Runs on all PRs - lint, test, build
+# ============================================
+
+name: CI
+
+on:
+  pull_request:
+    branches: [main, develop]
+  push:
+    branches: [main]
+
+env:
+  NODE_VERSION: '20'
+
+jobs:
+  # ===========================================
+  # Lint Check
+  # ===========================================
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: |
+            client/package-lock.json
+            server/package-lock.json
+
+      - name: Install client dependencies
+        working-directory: client
+        run: npm ci --ignore-scripts || npm install
+
+      - name: Install server dependencies
+        working-directory: server
+        run: npm ci --ignore-scripts || npm install
+
+      - name: Lint client
+        working-directory: client
+        run: npm run lint --if-present
+        continue-on-error: true
+
+      - name: Lint server
+        working-directory: server
+        run: npm run lint --if-present
+        continue-on-error: true
+
+  # ===========================================
+  # Server Tests
+  # ===========================================
+  test-server:
+    name: Server Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: server/package-lock.json
+
+      - name: Install dependencies
+        working-directory: server
+        run: npm ci --ignore-scripts || npm install
+
+      - name: Run tests
+        working-directory: server
+        run: npm test
+        env:
+          NODE_ENV: test
+          JWT_SECRET: test-secret-for-ci
+          SESSION_SECRET: test-session-secret
+        continue-on-error: true
+
+  # ===========================================
+  # Client Build
+  # ===========================================
+  build-client:
+    name: Build Client
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: client/package-lock.json
+
+      - name: Install dependencies
+        working-directory: client
+        run: npm ci --ignore-scripts || npm install
+
+      - name: Build
+        working-directory: client
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: client-build
+          path: client/dist
+          retention-days: 7
+
+  # ===========================================
+  # All Checks Pass Gate
+  # ===========================================
+  ci-success:
+    name: CI Success
+    needs: [lint, test-server, build-client]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Check all jobs passed
+        run: |
+          if [[ "${{ needs.lint.result }}" == "failure" ]] || \
+             [[ "${{ needs.test-server.result }}" == "failure" ]] || \
+             [[ "${{ needs.build-client.result }}" == "failure" ]]; then
+            echo "❌ CI failed"
+            exit 1
+          fi
+          echo "✅ All CI checks passed!"

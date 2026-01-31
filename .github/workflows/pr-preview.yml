@@ -1,0 +1,69 @@
+# ============================================
+# StackAudit.ai PR Preview
+# Creates preview deployments for PRs
+# ============================================
+
+name: PR Preview
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  # ===========================================
+  # Preview Deployment Info
+  # ===========================================
+  preview-info:
+    name: Preview Info
+    runs-on: ubuntu-latest
+    steps:
+      - name: PR Preview Notice
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const previewUrl = `https://stackaudit-pr-${prNumber}.onrender.com`;
+            
+            const body = `## 🚀 Preview Deployment
+
+            Render will automatically create a preview environment for this PR.
+
+            | Property | Value |
+            |----------|-------|
+            | **Preview URL** | ${previewUrl} |
+            | **Branch** | \`${context.payload.pull_request.head.ref}\` |
+            | **Status** | 🔄 Building... |
+
+            > **Note:** Preview deployments may take 2-5 minutes to become available.
+            > Preview environments expire after 7 days of inactivity.
+
+            ---
+            *Powered by [Render Preview Environments](https://render.com/docs/preview-environments)*`;
+
+            // Check if comment already exists
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber
+            });
+
+            const botComment = comments.find(comment => 
+              comment.user.type === 'Bot' && 
+              comment.body.includes('Preview Deployment')
+            );
+
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: body
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: body
+              });
+            }

@@ -1,0 +1,180 @@
+{
+  "sentry_alerts": {
+    "project_slug": "stackaudit",
+    "organization_slug": "stackaudit",
+    "alerts": [
+      {
+        "name": "High Error Rate",
+        "type": "metric",
+        "dataset": "events",
+        "query": "is:unresolved",
+        "aggregate": "count()",
+        "time_window": 5,
+        "threshold": 50,
+        "threshold_type": "above",
+        "resolve_threshold": 10,
+        "actions": [
+          {
+            "type": "email",
+            "target": "alerts@stackaudit.ai"
+          },
+          {
+            "type": "slack",
+            "channel": "#stackaudit-alerts"
+          }
+        ],
+        "environment": "production",
+        "severity": "critical"
+      },
+      {
+        "name": "New Error Pattern",
+        "type": "issue",
+        "conditions": [
+          {
+            "id": "sentry.rules.conditions.first_seen_event.FirstSeenEventCondition"
+          }
+        ],
+        "filters": [
+          {
+            "id": "sentry.rules.filters.level.LevelFilter",
+            "level": "error"
+          }
+        ],
+        "actions": [
+          {
+            "type": "email",
+            "target": "alerts@stackaudit.ai"
+          }
+        ],
+        "action_match": "all",
+        "frequency": 30,
+        "environment": "production"
+      },
+      {
+        "name": "Error Regression",
+        "type": "issue",
+        "conditions": [
+          {
+            "id": "sentry.rules.conditions.regression_event.RegressionEventCondition"
+          }
+        ],
+        "actions": [
+          {
+            "type": "email",
+            "target": "alerts@stackaudit.ai"
+          },
+          {
+            "type": "slack",
+            "channel": "#stackaudit-alerts"
+          }
+        ],
+        "action_match": "all",
+        "frequency": 60,
+        "environment": "production",
+        "severity": "warning"
+      },
+      {
+        "name": "Slow API Response",
+        "type": "metric",
+        "dataset": "transactions",
+        "query": "transaction:/api/*",
+        "aggregate": "p95(transaction.duration)",
+        "time_window": 10,
+        "threshold": 5000,
+        "threshold_type": "above",
+        "resolve_threshold": 2000,
+        "actions": [
+          {
+            "type": "email",
+            "target": "alerts@stackaudit.ai"
+          }
+        ],
+        "environment": "production",
+        "severity": "warning"
+      },
+      {
+        "name": "Analysis Job Failure Spike",
+        "type": "metric",
+        "dataset": "events",
+        "query": "transaction:analyze_repository error:true",
+        "aggregate": "count()",
+        "time_window": 15,
+        "threshold": 10,
+        "threshold_type": "above",
+        "resolve_threshold": 2,
+        "actions": [
+          {
+            "type": "email",
+            "target": "alerts@stackaudit.ai"
+          },
+          {
+            "type": "slack",
+            "channel": "#stackaudit-alerts"
+          }
+        ],
+        "environment": "production",
+        "severity": "critical"
+      },
+      {
+        "name": "Authentication Errors",
+        "type": "metric",
+        "dataset": "events",
+        "query": "transaction:/api/auth/* level:error",
+        "aggregate": "count()",
+        "time_window": 5,
+        "threshold": 20,
+        "threshold_type": "above",
+        "resolve_threshold": 5,
+        "actions": [
+          {
+            "type": "email",
+            "target": "alerts@stackaudit.ai"
+          }
+        ],
+        "environment": "production",
+        "severity": "warning"
+      },
+      {
+        "name": "Database Connection Errors",
+        "type": "issue",
+        "conditions": [
+          {
+            "id": "sentry.rules.conditions.event_frequency.EventFrequencyCondition",
+            "value": 5,
+            "comparisonType": "count",
+            "interval": "5m"
+          }
+        ],
+        "filters": [
+          {
+            "id": "sentry.rules.filters.tagged_event.TaggedEventFilter",
+            "key": "database",
+            "value": "connection_error"
+          }
+        ],
+        "actions": [
+          {
+            "type": "email",
+            "target": "alerts@stackaudit.ai"
+          },
+          {
+            "type": "slack",
+            "channel": "#stackaudit-alerts"
+          }
+        ],
+        "action_match": "all",
+        "frequency": 5,
+        "environment": "production",
+        "severity": "critical"
+      }
+    ],
+    "notification_settings": {
+      "deploy_notifications": true,
+      "weekly_report": true,
+      "spike_protection": {
+        "enabled": true,
+        "threshold_percent": 500
+      }
+    }
+  }
+}

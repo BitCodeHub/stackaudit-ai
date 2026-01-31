@@ -1,0 +1,119 @@
+{
+  "uptimerobot_monitors": [
+    {
+      "name": "StackAudit API - Health",
+      "type": "HTTP(s)",
+      "url": "https://api.stackaudit.ai/api/health",
+      "interval": 300,
+      "timeout": 30,
+      "http_method": "GET",
+      "expected_status": 200,
+      "keyword_type": "exists",
+      "keyword": "healthy",
+      "alert_contacts": ["primary"],
+      "tags": ["production", "critical", "api"]
+    },
+    {
+      "name": "StackAudit API - Auth",
+      "type": "HTTP(s)",
+      "url": "https://api.stackaudit.ai/api/auth/github",
+      "interval": 300,
+      "timeout": 30,
+      "http_method": "GET",
+      "expected_status": [200, 302, 401],
+      "alert_contacts": ["primary"],
+      "tags": ["production", "auth", "api"]
+    },
+    {
+      "name": "StackAudit Frontend",
+      "type": "HTTP(s)",
+      "url": "https://stackaudit.ai",
+      "interval": 300,
+      "timeout": 30,
+      "http_method": "GET",
+      "expected_status": 200,
+      "keyword_type": "exists",
+      "keyword": "StackAudit",
+      "alert_contacts": ["primary"],
+      "tags": ["production", "critical", "frontend"]
+    },
+    {
+      "name": "StackAudit Landing Page",
+      "type": "HTTP(s)",
+      "url": "https://www.stackaudit.ai",
+      "interval": 300,
+      "timeout": 30,
+      "http_method": "GET",
+      "expected_status": 200,
+      "alert_contacts": ["primary"],
+      "tags": ["production", "marketing"]
+    },
+    {
+      "name": "StackAudit API - Reports Endpoint",
+      "type": "HTTP(s)",
+      "url": "https://api.stackaudit.ai/api/reports",
+      "interval": 600,
+      "timeout": 30,
+      "http_method": "GET",
+      "expected_status": [200, 401],
+      "alert_contacts": ["primary"],
+      "tags": ["production", "api"]
+    },
+    {
+      "name": "StackAudit API - Analyze Endpoint",
+      "type": "HTTP(s)",
+      "url": "https://api.stackaudit.ai/api/analyze",
+      "interval": 600,
+      "timeout": 30,
+      "http_method": "HEAD",
+      "expected_status": [200, 401, 405],
+      "alert_contacts": ["secondary"],
+      "tags": ["production", "api"]
+    },
+    {
+      "name": "Render Status",
+      "type": "HTTP(s)",
+      "url": "https://status.render.com",
+      "interval": 900,
+      "timeout": 30,
+      "http_method": "GET",
+      "expected_status": 200,
+      "alert_contacts": ["secondary"],
+      "tags": ["infrastructure", "external"]
+    },
+    {
+      "name": "GitHub API Status",
+      "type": "HTTP(s)",
+      "url": "https://api.github.com/status",
+      "interval": 900,
+      "timeout": 30,
+      "http_method": "GET",
+      "expected_status": 200,
+      "alert_contacts": ["secondary"],
+      "tags": ["infrastructure", "external"]
+    }
+  ],
+  "alert_contacts": {
+    "primary": {
+      "type": "email",
+      "value": "alerts@stackaudit.ai",
+      "threshold_up": 1,
+      "threshold_down": 1
+    },
+    "secondary": {
+      "type": "webhook",
+      "value": "${SLACK_WEBHOOK_URL}",
+      "threshold_up": 2,
+      "threshold_down": 2
+    }
+  },
+  "maintenance_windows": [
+    {
+      "name": "Weekly Maintenance",
+      "day": "sunday",
+      "start_time": "03:00",
+      "duration_minutes": 60,
+      "timezone": "America/Los_Angeles"
+    }
+  ]
+}

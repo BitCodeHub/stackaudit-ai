@@ -1,4 +1,11 @@
 import React from 'react';
+import { SchemaMarkup } from '../components/SchemaMarkup';
+import {
+  generateOrganizationSchema,
+  generateSoftwareApplicationSchema,
+  generateFAQPageSchema,
+  DEFAULT_FAQS,
+} from '../lib/generateSchema';
 
 interface LandingPageProps {
   onStartAudit: () => void;
@@ -7,6 +14,15 @@ interface LandingPageProps {
 export const LandingPage: React.FC<LandingPageProps> = ({ onStartAudit }) => {
   return (
     <div className="min-h-screen">
+      {/* Schema.org Structured Data for SEO/GEO */}
+      <SchemaMarkup
+        schema={[
+          generateOrganizationSchema(),
+          generateSoftwareApplicationSchema(),
+          generateFAQPageSchema(DEFAULT_FAQS),
+        ]}
+      />
+      
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-600 to-blue-800 text-white py-20 px-6">
         <div className="max-w-6xl mx-auto text-center">

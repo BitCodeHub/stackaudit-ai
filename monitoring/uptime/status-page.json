@@ -1,0 +1,52 @@
+{
+  "status_page": {
+    "friendly_name": "StackAudit.ai Status",
+    "custom_domain": "status.stackaudit.ai",
+    "sort": "friendly-name-a-z",
+    "hide_url_links": true,
+    "components": [
+      {
+        "name": "Core Services",
+        "monitors": [
+          "StackAudit API - Health",
+          "StackAudit Frontend"
+        ]
+      },
+      {
+        "name": "Authentication",
+        "monitors": [
+          "StackAudit API - Auth"
+        ]
+      },
+      {
+        "name": "API Endpoints",
+        "monitors": [
+          "StackAudit API - Reports Endpoint",
+          "StackAudit API - Analyze Endpoint"
+        ]
+      },
+      {
+        "name": "External Dependencies",
+        "monitors": [
+          "Render Status",
+          "GitHub API Status"
+        ]
+      }
+    ],
+    "theme": {
+      "primary_color": "#6366f1",
+      "secondary_color": "#10b981",
+      "show_powered_by": false
+    },
+    "notifications": {
+      "enable_rss": true,
+      "enable_email_subscription": true
+    }
+  },
+  "dns_setup": {
+    "record_type": "CNAME",
+    "host": "status",
+    "value": "stats.uptimerobot.com",
+    "ttl": 3600
+  }
+}
