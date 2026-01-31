@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { AuditFormData, AITool, UseCase, CompanySize } from '../types';
+import type { AuditFormData, AITool, UseCase, CompanySize } from '../types';
+import { api } from '../services/api';
 
 const USE_CASES: UseCase[] = [
   'Writing',
@@ -13,12 +14,19 @@ const USE_CASES: UseCase[] = [
 
 const COMPANY_SIZES: CompanySize[] = ['1-10', '11-50', '51-200', '201-500', '500+'];
 
-export const IntakeForm: React.FC = () => {
+interface IntakeFormProps {
+  onComplete?: (auditId: string) => void;
+}
+
+export const IntakeForm: React.FC<IntakeFormProps> = ({ onComplete }) => {
   const [formData, setFormData] = useState<AuditFormData>({
     companyName: '',
     companySize: '',
     tools: [],
   });
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [analyzing, setAnalyzing] = useState(false);
 
   const addTool = () => {
     const newTool: AITool = {
@@ -60,11 +68,57 @@ export const IntakeForm: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // TODO: Send to API
-    alert('Audit submitted! (API integration pending)');
+    
+    // Validation
+    if (!formData.companyName.trim()) {
+      setError('Company name is required');
+      return;
+    }
+    if (!formData.companySize) {
+      setError('Company size is required');
+      return;
+    }
+    if (formData.tools.length === 0) {
+      setError('Please add at least one AI tool');
+      return;
+    }
+
+    try {
+      setSubmitting(true);
+      setError(null);
+
+      // Step 1: Create audit
+      const audit = await api.createAudit({
+        companyName: formData.companyName,
+        companySize: formData.companySize,
+      });
+
+      // Step 2: Add tools
+      const toolsToAdd = formData.tools.map(tool => ({
+        toolName: tool.toolName,
+        monthlyCost: tool.monthlyCost,
+        seats: tool.seats,
+        useCases: tool.useCases,
+      }));
+
+      await api.addTools(audit.id, toolsToAdd);
+
+      // Step 3: Trigger AI analysis
+      setAnalyzing(true);
+      await api.analyzeAudit(audit.id);
+
+      // Step 4: Navigate to report
+      if (onComplete) {
+        onComplete(audit.id);
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to submit audit');
+      setAnalyzing(false);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const totalMonthlyCost = formData.tools.reduce(
@@ -272,6 +326,13 @@ export const IntakeForm: React.FC = () => {
             )}
           </div>
 
+          {/* Error Display */}
+          {error && (
+            <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+              <p className="text-red-800 font-medium">{error}</p>
+            </div>
+          )}
+
           {/* Summary & Submit */}
           {formData.tools.length > 0 && (
             <div className="pt-6 border-t border-gray-200">
@@ -286,8 +347,16 @@ export const IntakeForm: React.FC = () => {
                     {formData.tools.length !== 1 ? 's' : ''}
                   </p>
                 </div>
-                <button type="submit" className="btn-primary">
-                  Analyze My Stack →
+                <button 
+                  type="submit" 
+                  className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={submitting || analyzing}
+                >
+                  {analyzing 
+                    ? '🤖 AI Analyzing...' 
+                    : submitting 
+                    ? 'Submitting...' 
+                    : 'Analyze My Stack →'}
                 </button>
               </div>
             </div>
