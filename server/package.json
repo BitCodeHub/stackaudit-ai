@@ -20,7 +20,7 @@
     "express-validator": "^7.0.1",
     "express-rate-limit": "^7.1.5",
     "stripe": "^14.10.0",
-    "uuid": "^9.0.1",
+    "uuid": "^13.0.0",
     "winston": "^3.11.0"
   },
   "devDependencies": {
