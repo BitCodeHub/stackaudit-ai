@@ -32,6 +32,23 @@ interface AnalysisResult {
 
 export class AuditService {
   /**
+   * Create a guest user for IntakeForm flow
+   */
+  async createGuestUser(data: {
+    companyName: string;
+    companySize: string;
+    email: string;
+  }) {
+    return prisma.user.create({
+      data: {
+        email: data.email,
+        companyName: data.companyName,
+        companySize: data.companySize
+      }
+    });
+  }
+
+  /**
    * Create a new audit
    */
   async createAudit(data: CreateAuditData): Promise<Audit> {
@@ -148,6 +165,35 @@ export class AuditService {
         }
       }
     });
+  }
+
+  /**
+   * Add multiple tools to an audit (batch)
+   */
+  async addToolsBatch(id: string, tools: Array<{
+    toolName: string;
+    monthlyCost: number;
+    seats: number;
+    useCases: string[];
+  }>) {
+    // Delete existing tools (if any)
+    await prisma.auditTool.deleteMany({
+      where: { auditId: id }
+    });
+
+    // Create all new tools
+    await prisma.auditTool.createMany({
+      data: tools.map(tool => ({
+        auditId: id,
+        toolName: tool.toolName,
+        monthlyCost: new Decimal(tool.monthlyCost),
+        seats: tool.seats,
+        useCases: tool.useCases || []
+      }))
+    });
+
+    // Return the updated audit with tools
+    return this.getAuditById(id);
   }
 
   /**

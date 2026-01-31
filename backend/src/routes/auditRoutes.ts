@@ -4,7 +4,8 @@ import {
   updateAudit,
   analyzeAudit,
   getAuditReport,
-  getAudit
+  getAudit,
+  addToolsBatch
 } from '../controllers/auditController';
 
 const router = Router();
@@ -26,6 +27,12 @@ router.get('/:id', getAudit);
  * Update audit (add tools, change status, etc.)
  */
 router.put('/:id', updateAudit);
+
+/**
+ * POST /api/audits/:id/tools/batch
+ * Add multiple tools to an audit
+ */
+router.post('/:id/tools/batch', addToolsBatch);
 
 /**
  * POST /api/audits/:id/analyze
