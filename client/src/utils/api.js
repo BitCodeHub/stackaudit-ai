@@ -1,8 +1,8 @@
-// API base URL - empty string for same-origin in production
+// API base URL
 const API_BASE = import.meta.env.VITE_API_URL || (
   window.location.hostname === 'localhost' 
     ? 'http://localhost:3001'  // Local server port
-    : ''  // Same origin in production (server serves both API and frontend)
+    : 'https://stackaudit-api.onrender.com'  // Production API
 )
 
 function getAuthHeaders() {
