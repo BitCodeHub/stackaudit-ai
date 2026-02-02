@@ -21,7 +21,7 @@
     "morgan": "^1.10.0",
     "pdfkit": "^0.15.2",
     "stripe": "^14.10.0",
-    "uuid": "^9.0.1",
+    "uuid": "^13.0.0",
     "winston": "^3.11.0"
   },
   "devDependencies": {
